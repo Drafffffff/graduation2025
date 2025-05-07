@@ -1,0 +1,22 @@
+.main::-webkit-scrollbar {
+  display: none;
+}
+
+.main {
+  scrollbar-width: none;
+  /* Firefox */
+  overflow-x: hidden;
+
+}
+
+.main::-webkit-scrollbar {
+  width: 0 !important
+}
+
+.main {
+  -ms-overflow-style: none;
+}
+
+.main {
+  overflow: -moz-scrollbars-none;
+}
