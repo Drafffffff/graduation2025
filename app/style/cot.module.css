@@ -1,22 +1,64 @@
-.main::-webkit-scrollbar {
-  display: none;
+.hLine1 {
+  position: absolute;
+  top: 28px;
 }
 
-.main {
-  scrollbar-width: none;
-  /* Firefox */
-  overflow-x: hidden;
-
+.hLine2 {
+  position: absolute;
+  top: calc(28px + (100% - 28px - 28px) * 5 / 12);
 }
 
-.main::-webkit-scrollbar {
-  width: 0 !important
+.hLine3 {
+  position: absolute;
+  top: calc(28px + (100% - 28px - 28px) * 7 / 12);
 }
 
-.main {
-  -ms-overflow-style: none;
+.hLine4 {
+  position: absolute;
+  top: calc(100% - 28px);
 }
 
-.main {
-  overflow: -moz-scrollbars-none;
+.vLine1 {
+  position: absolute;
+  left: 28px;
+}
+
+.vLine2 {
+  position: absolute;
+  left: calc(28px + (100% - 28px - 28px) * 5 / 23);
+}
+
+.vLine3 {
+  position: absolute;
+  left: calc(28px + (100% - 28px - 28px) * 10 / 23);
+}
+
+.vLine4 {
+  position: absolute;
+  left: calc(28px + (100% - 28px - 28px) * 21 / 23);
+}
+
+.vLine5 {
+  position: absolute;
+  left: calc(100% - 28px);
+}
+
+.title {
+  position: absolute;
+  top: calc(28px + (100% - 28px - 28px) * 5 / 12);
+  left: calc(28px + (100% - 28px - 28px) * 5 / 23);
+}
+
+.subTitle {
+  position: absolute;
+  top: calc(28px + (100% - 28px - 28px) * 5 / 12 - 10rem);
+  left: calc(28px + (100% - 28px - 28px) * 5 / 23);
+}
+
+.desc {
+  position: absolute;
+  height: calc((100% - 28px - 28px) * 5 / 12);
+  width: calc((100% - 28px - 28px) * 5 / 23);
+  left: calc(28px + (100% - 28px - 28px) * 0 / 23);
+  top: calc(28px + (100% - 28px - 28px) * 7 / 12);
 }

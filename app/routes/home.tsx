@@ -8,12 +8,13 @@ import { useGSAP } from "@gsap/react";
 import { Autoplay } from 'swiper/modules';
 import { useRef, useState } from "react";
 import { Flip } from "gsap/Flip";
+import { SplitText } from "gsap/SplitText";
 import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
-gsap.registerPlugin(Flip, DrawSVGPlugin);
+gsap.registerPlugin(Flip, DrawSVGPlugin, SplitText);
 
 export function meta({ }: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
+    { title: "PicCopilot" },
     { name: "description", content: "Welcome to React Router!" },
   ];
 }
@@ -42,15 +43,73 @@ export default function Home() {
       extendTimeline: true, //now you can call the effect directly on any GSAP timeline to have the result immediately inserted in the position you define (default is sequenced at the end)
     });
 
+
+    //进入动画
+
+    //渐出
+    gsap.from("#swiper", { opacity: 0, duration: 1, ease: "power4.inOut", delay: 0.5 })
+    gsap.from("#logo", { opacity: 0, duration: 1, ease: "power4.inOut", delay: 0.5 })
+
+    const split = SplitText.create("#title", { type: " chars" });
+    gsap.from(split.chars, {
+      duration: 1,
+      opacity: 0,
+      autoAlpha: 0, // fade in from opacity: 0 and visibility: hidden
+      stagger: 0.05, // 0.05 seconds between each
+      delay: 0.5
+    });
+
+    const splitsub = SplitText.create("#subTitle", { type: "words ,chars" });
+    gsap.from(splitsub.words, {
+      duration: 1,
+      opacity: 0,
+      autoAlpha: 0, // fade in from opacity: 0 and visibility: hidden
+      stagger: 0.05, // 0.05 seconds between each
+
+      delay: 0.5
+    });
+
+    const splitdesc = SplitText.create("#desc", { type: "words,chars" });
+    gsap.from(splitdesc.words, {
+      duration: 1,
+      opacity: 0,
+      autoAlpha: 0, // fade in from opacity: 0 and visibility: hidden
+      stagger: 0.05, // 0.05 seconds between each
+      delay: 0.5
+    });
+
+
+    gsap.from(SplitText.create("#try", { type: "words ,chars" }).chars, {
+      duration: 0.5,
+      y: 100,
+      autoAlpha: 0, // fade in from opacity: 0 and visibility: hidden
+      stagger: 0.05, // 0.05 seconds between each
+      delay: 0.5
+
+    });
+
+    gsap.from("#cot", { x: -400, duration: 1, ease: "power4.inOut", delay: 0.5 })
+    gsap.from("#vec", { y: -400, duration: 1, ease: "power4.inOut", delay: 0.5 })
+    gsap.from("#col", { y: 400, duration: 1, ease: "power4.inOut", delay: 0.5 })
+    gsap.from("#lay", { x: 400, duration: 1, ease: "power4.inOut", delay: 0.5 })
+
+    gsap.from("#hLine1", { width: 0, duration: 1, ease: "power4.inOut", delay: 0.1 })
+    gsap.from("#hLine2", { width: 0, duration: 1, ease: "power4.inOut", delay: 0.2 })
+    gsap.from("#hLine3", { width: 0, duration: 1, ease: "power4.inOut", delay: 0.4 })
+    gsap.from("#hLine4", { width: 0, duration: 1, ease: "power4.inOut", delay: 0.1 })
+
+
+    gsap.from("#vLine1", { height: 0, duration: 1, ease: "power4.inOut", delay: 0.4 })
+    gsap.from("#vLine2", { height: 0, duration: 1, ease: "power4.inOut", delay: 0.3 })
+    gsap.from("#vLine3", { height: 0, duration: 1, ease: "power4.inOut", delay: 0.1 })
+    gsap.from("#vLine4", { height: 0, duration: 1, ease: "power4.inOut", delay: 0.2 })
+    gsap.from("#vLine5", { height: 0, duration: 1, ease: "power4.inOut", delay: 0.5 })
+
     const onCotClick = contextSafe(() => {
       if (!clickable) return
       setClickable(false)
-      gsap.effects.fade("#col");
-      gsap.effects.fade("#lay");
+      gsap.effects.fade("#col"); gsap.effects.fade("#lay");
       gsap.effects.fade("#vec");
-      gsap.set(cotEle, {
-        backgroundColor: "#0E5840",
-      })
       const state = Flip.getState(cotEle, { props: "backgroundColor," });
       const placeholder = createPlaceholder(cotEle);
       gsap.set(cotEle, {
@@ -59,7 +118,7 @@ export default function Home() {
         position: "absolute",
         left: 0,
         top: 0,
-        backgroundColor: "#666",
+        backgroundColor: "#000",
         zIndex: 100,
       });
       gsap.to("#cotp", {
@@ -97,7 +156,7 @@ export default function Home() {
         position: "absolute",
         left: 0,
         top: 0,
-        backgroundColor: "#666",
+        backgroundColor: "#000",
         zIndex: 100,
       });
 
@@ -147,7 +206,7 @@ export default function Home() {
         width: "100vw",
         height: "100vh",
         position: "absolute",
-        backgroundColor: "#666",
+        backgroundColor: "#000",
         left: 0,
         top: 0,
         zIndex: 100,
@@ -198,7 +257,7 @@ export default function Home() {
       gsap.set(vecEle, {
         width: "100vw",
         height: "100vh",
-        backgroundColor: "#666",
+        backgroundColor: "#000",
         position: "absolute",
         left: 0,
         top: 0,
@@ -267,10 +326,11 @@ export default function Home() {
     return clone;
   }
 
-  return <div className="overflow-hidden">
+  return <div className="overflow-hidden" ref={gsapContainer}>
 
     <div className="absolute w-screen h-screen flex justify-center items-center z-0 opacity-30">
       <Swiper
+        id="swiper"
         spaceBetween={50}
         slidesPerView={6}
         // onSlideChange={() => console.log('slide change')}
@@ -301,21 +361,21 @@ export default function Home() {
       </Swiper></div>
     <div className={`absolute w-screen h-screen pointer-events-none z-10`}>
       <div className={`${styles.hLine} absolute w-screen h-screen`}>
-        <div className={`${styles.hLine1} w-screen h-[1px] bg-black`}></div>
-        <div className={`${styles.hLine2} w-screen h-[1px] bg-black`}></div>
-        <div className={`${styles.hLine3} w-screen h-[1px] bg-black`}></div>
-        <div className={`${styles.hLine4} w-screen h-[1px] bg-black`}></div>
+        <div id="hLine1" className={`${styles.hLine1} w-screen h-[1px] bg-black`}></div>
+        <div id="hLine2" className={`${styles.hLine2} w-screen h-[1px] bg-black`}></div>
+        <div id="hLine3" className={`${styles.hLine3} w-screen h-[1px] bg-black`}></div>
+        <div id="hLine4" className={`${styles.hLine4} w-screen h-[1px] bg-black`}></div>
       </div>
       <div className={`${styles.vLine} absolute w-screen h-screen`}>
-        <div className={`${styles.vLine1} w-[1px] h-screen bg-black`}></div>
-        <div className={`${styles.vLine2} w-[1px] h-screen bg-black`}></div>
-        <div className={`${styles.vLine3} w-[1px] h-screen bg-black`}></div>
-        <div className={`${styles.vLine4} w-[1px] h-screen bg-black`}></div>
-        <div className={`${styles.vLine5} w-[1px] h-screen bg-black`}></div>
+        <div id="vLine1" className={`${styles.vLine1} w-[1px] h-screen bg-black`}></div>
+        <div id="vLine2" className={`${styles.vLine2} w-[1px] h-screen bg-black`}></div>
+        <div id="vLine3" className={`${styles.vLine3} w-[1px] h-screen bg-black`}></div>
+        <div id="vLine4" className={`${styles.vLine4} w-[1px] h-screen bg-black`}></div>
+        <div id="vLine5" className={`${styles.vLine5} w-[1px] h-screen bg-black`}></div>
       </div>
     </div>
-    <div ref={gsapContainer} className={`relative overflow-hidden main-container w-screen h-screen grid grid-cols-[28px_2.5fr_1fr_7fr_1fr_28px] grid-rows-[28px_2.5fr_1fr_2.5fr_28px] z-20`} >
-      <div className="row-[2_/_3] col-[2_/_3]">
+    <div className={`relative overflow-hidden main-container w-screen h-screen grid grid-cols-[28px_2.5fr_1fr_7fr_1fr_28px] grid-rows-[28px_2.5fr_1fr_2.5fr_28px] z-20`} >
+      <div id="logo" className="row-[2_/_3] col-[2_/_3]">
         <img src="/home/logo.png" />
       </div>
       <div
@@ -365,12 +425,12 @@ export default function Home() {
         </svg>
       </div>
       <div className="row-[3_/_4] col-[4_/_5]">
-        <p className={`${styles.title} bg-[#E7FE79] inline-block`}>AI时代的顶级电商设计师</p>
+        <p id="title" className={`${styles.title} bg-[#E7FE79] inline-block`}>AI时代的顶级电商设计师</p>
         <br />
-        <p className={`${styles.subtitle} bg-[#E7FE79] inline-block`}>Top Ecommerce Designer in the Age of AI</p>
+        <p id="subTitle" className={`${styles.subtitle} bg-[#E7FE79] inline-block`}>Top Ecommerce Designer in the Age of AI</p>
       </div>
-      <div className="select-none row-[2_/_3] col-[4_/_5] text-[24px] font-thin w-[35%]"><p>Create pictures that sell your products with Pic Copilot Al.Proven to boost click-through rates by 54.7%!</p></div>
-      <div className="select-none row-[4_/_5] col-[4_/_5] text-[48px] font-normal underline  self-end justify-self-end "><p>访问piccopilot.com即刻体验</p></div>
+      <div id="desc" className="select-none row-[2_/_3] col-[4_/_5] text-[24px] font-thin w-[35%]"><p>Create pictures that sell your products with Pic Copilot Al.Proven to boost click-through rates by 54.7%!</p></div>
+      <div id="try" className="select-none row-[4_/_5] col-[4_/_5] text-[48px] font-normal underline  self-end justify-self-end "><p>访问piccopilot.com即刻体验</p></div>
     </div>
   </div >;
 }
