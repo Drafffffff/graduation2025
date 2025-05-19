@@ -8,7 +8,8 @@ import { useGSAP } from "@gsap/react";
 import { Autoplay } from 'swiper/modules';
 import { useRef, useState } from "react";
 import { Flip } from "gsap/Flip";
-gsap.registerPlugin(Flip);
+import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
+gsap.registerPlugin(Flip, DrawSVGPlugin);
 
 export function meta({ }: Route.MetaArgs) {
   return [
@@ -46,7 +47,10 @@ export default function Home() {
       gsap.effects.fade("#col");
       gsap.effects.fade("#lay");
       gsap.effects.fade("#vec");
-      const state = Flip.getState(cotEle, { props: "backgroundColor" });
+      gsap.set(cotEle, {
+        backgroundColor: "#0E5840",
+      })
+      const state = Flip.getState(cotEle, { props: "backgroundColor," });
       const placeholder = createPlaceholder(cotEle);
       gsap.set(cotEle, {
         width: "100vw",
@@ -57,9 +61,8 @@ export default function Home() {
         backgroundColor: "#666",
         zIndex: 100,
       });
-      gsap.set("#cotp", { fontSize: "4.5rem" });
       gsap.to("#cotp", {
-        fontSize: "10rem",
+        // fontSize: "10rem",
         duration: 1,
         x: "320px",
         ease: "power4.inOut"
@@ -74,6 +77,10 @@ export default function Home() {
         }
       });
     });
+
+    const onCotHover = contextSafe(() => {
+      gsap.fromTo('#cotPath', { duration: 1, drawSVG: 0, ease: "power4.inOut" }, { duration: 1, drawSVG: "100%" })
+    })
 
     const onColClick = contextSafe(() => {
       gsap.effects.fade("#cot");
@@ -91,9 +98,8 @@ export default function Home() {
         zIndex: 100,
       });
 
-      gsap.set("#colp", { fontSize: "4.5rem" });
       gsap.to("#colp", {
-        fontSize: "10rem",
+        // fontSize: "10rem",
         duration: 1,
         x: "320px",
         ease: "power4.inOut"
@@ -109,6 +115,24 @@ export default function Home() {
         }
       });
     });
+
+
+
+    const onColHover = contextSafe(() => {
+      const t = 0.6
+      const tl1 = gsap.timeline();
+      const tl2 = gsap.timeline();
+      tl1.to('#colSvg1', { x: 306, duration: t, ease: "power4.inOut" })
+      tl2.to('#colSvg2', { x: 254, duration: t, ease: "power4.inOut", })
+    })
+
+    const onColLeave = contextSafe(() => {
+      const t = 0.6
+      const tl1 = gsap.timeline();
+      const tl2 = gsap.timeline();
+      tl1.to('#colSvg1', { x: 254, duration: t, ease: "power4.inOut" })
+      tl2.to('#colSvg2', { x: 307, duration: t, ease: "power4.inOut", })
+    })
     const onLayClick = contextSafe(() => {
       gsap.effects.fade("#cot");
       gsap.effects.fade("#col");
@@ -127,7 +151,6 @@ export default function Home() {
         zIndex: 100,
       });
 
-      gsap.set("#layp", { fontSize: "4.5rem" });
       gsap.to("#layp", {
         fontSize: "10rem",
         duration: 1,
@@ -163,7 +186,6 @@ export default function Home() {
         zIndex: 100,
       });
 
-      gsap.set("#vecp", { fontSize: "4.5rem" });
       gsap.to("#vecp", {
         fontSize: "10rem",
         duration: 1,
@@ -181,14 +203,34 @@ export default function Home() {
         }
       });
     });
+
+    const onVecHover = contextSafe(() => {
+      gsap.timeline().fromTo('#vecP1', { drawSVG: "100% 100%", ease: "power4.inOut" }, { duration: 0.5, delay: 0.1, drawSVG: "0% 100% ", })
+        .fromTo("#vecP4", { drawSVG: "0%", ease: "power4.inOut" }, { duration: 0.3, drawSVG: "100%", })
+      gsap.timeline().fromTo('#vecP2', { drawSVG: "0%", ease: "power4.inOut" }, { duration: 0.5, delay: 0.05, drawSVG: "100%", })
+        .fromTo("#vecP5", { drawSVG: "0%", ease: "power4.inOut" }, { duration: 0.3, drawSVG: "100%", })
+      gsap.timeline().fromTo('#vecP3', { drawSVG: "0", ease: "power4.inOut" }, { duration: 0.5, drawSVG: " 100% ", })
+        .fromTo("#vecP6", { drawSVG: "0%", ease: "power4.inOut" }, { duration: 0.3, drawSVG: "100%", })
+
+
+
+    })
     cotEle.addEventListener('click', onCotClick);
+    cotEle.addEventListener('mouseenter', onCotHover);
     vecEle.addEventListener('click', onVecClick);
+    vecEle.addEventListener('mouseenter', onVecHover);
     colEle.addEventListener('click', onColClick);
+    colEle.addEventListener('mouseenter', onColHover);
+    colEle.addEventListener('mouseleave', onColLeave);
     layEle.addEventListener('click', onLayClick);
     return () => {
       cotEle.removeEventListener('click', onCotClick);
+      cotEle.removeEventListener('mouseenter', onCotHover);
       vecEle.removeEventListener('click', onVecClick);
+      vecEle.removeEventListener('mouseenter', onVecClick);
       colEle.removeEventListener('click', onColClick);
+      colEle.removeEventListener('mouseenter', onColHover);
+      colEle.removeEventListener('mouseleave', onColLeave);
       layEle.removeEventListener('click', onLayClick);
     };
   }, { scope: gsapContainer });
@@ -256,32 +298,58 @@ export default function Home() {
       </div>
       <div
         ref={cotGSAPRef}
-        id="cot" className={`${styles.cot}  bg-[#3CD6A3] flex flex-col justify-between cursor-pointer select-none w-[360px] h-[230px]`} >
-        <p id="cotp" className=" font-thin text-8 self-start ">Chain of Thought</p>
-        <p id="cotp" className=" font-thin text-8xl  ">思维链</p>
-        <img src="/home/cot.png" className="absolute translate-x-6 translate-y-16 " />
+        id="cot" className={`${styles.cot} group  bg-[#3CD6A3] flex hover:bg-[#000]  flex-col justify-between cursor-pointer select-none w-[360px] h-[230px]`} >
+        <p id="cotp" className=" font-thin text-8 self-start group-hover:invert duration-50 ease-in-out">Chain of Thought</p>
+        <p id="cotp" className=" font-thin text-8xl group-hover:invert duration-50 ease-in-out  ">思维链</p>
+        <svg width="278" height="145" viewBox="0 0 278 145" fill="none" xmlns="http://www.w3.org/2000/svg" className="cotSVG absolute translate-x-6 translate-y-16 group-hover:invert duration-50 ease-in-out ">
+          <path id="cotPath" d="M1.04557 78.8975C2.54225 55.0923 16.5698 -2.60804 61.2758 1.23771C118.657 6.17384 93.9234 144.706 142.349 143.874C203.121 142.83 265.793 -38.9133 277.225 26.2368" stroke="black" strokeWidth="0.862676" />
+        </svg>
+        {/* <img src="/home/cot.png" className="absolute translate-x-6 translate-y-16 group-hover:invert duration-50 ease-in-out " /> */}
       </div>
-      <div id="vec" ref={vecGSAPRef} className={`${styles.vec} bg-[#47A8E9]  flex flex-col justify-between  cursor-pointer select-none w-[360px] h-[230px]`}>
-        <p id="vecp" className=" font-thin text-8 self-start ">Semantic Embedding</p>
-        <p id="vecp" className=" font-thin text-7xl ">语义向量</p>
-        <img src="/home/vec.png" className="absolute translate-x-[274px]  " />
+      <div id="vec" ref={vecGSAPRef} className={`${styles.vec} group hover:bg-[#000] bg-[#47A8E9]  flex flex-col justify-between  cursor-pointer select-none w-[360px] h-[230px]`}>
+        <p id="vecp" className=" font-thin text-8 self-start group-hover:invert duration-50 ease-in-out ">Semantic Embedding</p>
+        <p id="vecp" className=" font-thin text-7xl group-hover:invert duration-50 ease-in-out">语义向量</p>
+        <svg width="85" className="absolute translate-x-[274px] group-hover:invert duration-50 ease-in-out " height="81" viewBox="0 0 85 81" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path id="vecP1" d="M82.7953 1.8125L3.6333 78.8692" stroke="black" strokeWidth="0.842149" />
+          <path id="vecP2" d="M0.265137 69.6074H83.6379" stroke="black" strokeWidth="0.842149" />
+          <path id="vecP3" d="M12.0552 80.9757L12.0552 1.39258" stroke="black" strokeWidth="0.842149" />
+          <path id="vecP4" d="M74.374 2.6558L82.7955 1.39258V9.393" stroke="black" strokeWidth="0.842149" />
+          <path id="vecP5" d="M76.4795 64.1327L83.6378 69.6067L76.4795 75.9228M5.31787 8.97192L12.0551 1.39258L17.9501 8.97192" stroke="black" strokeWidth="0.842149" />
+        </svg>
       </div>
-      <div id="col" ref={colGSAPRef} className={`${styles.col} bg-[#F7A1DB] flex flex-col justify-between cursor-pointer select-none w-[360px] h-[230px]`}>
-        <p id="colp" className=" font-thin text-8 self-start ">Color  Algorithm</p>
-        <p id="colp" className=" font-thin text-7xl ">配色算法</p>
-        <img src="/home/color.png" className="absolute translate-x-[254px]  " />
+      <div id="col" ref={colGSAPRef} className={`${styles.col} bg-[#F7A1DB] group hover:bg-[#000] flex flex-col justify-between cursor-pointer select-none w-[360px] h-[230px]`}>
+        <p id="colp" className=" font-thin text-8 self-start group-hover:invert duration-50 ease-in-out">Color  Algorithm</p>
+        <p id="colp" className=" font-thin text-7xl group-hover:invert duration-50 ease-in-out">配色算法</p>
+        <svg id="colSvg1" className="absolute translate-x-[254px]  translate-y-[53px]" width="54" height="53" viewBox="0 0 54 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0.907715" y="0.449219" width="52.4485" height="52.4485" className="fill-[#AD5555]  group-hover:fill-none group-hover:stroke-white" />
+          <circle cx="27.132" cy="26.6735" r="26.2243" className="fill-[#FF7070]  group-hover:fill-none group-hover:stroke-white" />
+        </svg>
+        <svg id="colSvg2" className="absolute translate-x-[306px]  " width="54" height="53" viewBox="0 0 54 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0.907715" y="0.449219" width="52.4485" height="52.4485" className="fill-[#AD5555]  group-hover:fill-none group-hover:stroke-white" />
+          <circle cx="27.132" cy="26.6735" r="26.2243" className="fill-[#FF7070]  group-hover:fill-none group-hover:stroke-white" />
+        </svg>
       </div>
-      <div id="lay" ref={layGSAPRef} className={`${styles.lay} bg-[#FFA268] col-span-2 flex flex-col justify-between cursor-pointer select-none w-[360px] h-[230px]`}>
-        <p id="layp" className=" font-thin text-8 self-start border-[0.5px]">Flex Layout</p>
-        <p id="layp" className=" font-thin text-7xl self-start border-[0.5px] ">版式文法</p>
-        <img src="/home/lay1.png" className="absolute translate-x-[225px]  " />
-        <img src="/home/lay2.png" className="absolute translate-y-[44px]  " />
+      <div id="lay" ref={layGSAPRef} className={`${styles.lay} group bg-[#FFA268] hover:bg-[#000] col-span-2 flex flex-col justify-between cursor-pointer select-none w-[360px] h-[230px]`}>
+        <p id="layp" className=" font-thin text-8 self-start border-[0.5px] group-hover:invert duration-50 ease-in-out">Flex Layout</p>
+        <p id="layp" className=" font-thin text-7xl self-start border-[0.5px] group-hover:invert duration-50 ease-in-out ">版式文法</p>
+        <svg width="136" height="97" className="absolute translate-x-[225px]  group-hover:invert duration-50 ease-in-out" viewBox="0 0 136 97" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0.523416" y="0.604471" width="134.428" height="95.5849" stroke="black" stroke-width="0.380816" />
+          <path d="M0.535529 96.155L134.964 0.569708" stroke="black" stroke-width="0.380816" />
+          <path d="M0.536133 0.572266L134.964 96.1572" stroke="black" stroke-width="0.380816" />
+        </svg>
+        <svg width="30" className="absolute translate-y-[44px]  group-hover:invert duration-50 ease-in-out" height="97" viewBox="0 0 30 97" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0.452127" y="0.370096" width="29.3229" height="95.5849" stroke="black" stroke-width="0.380816" />
+          <path d="M0.529856 95.7312L29.6973 0.5959" stroke="black" stroke-width="0.380816" />
+          <path d="M29.4718 95.7997L0.755371 0.527344" stroke="black" stroke-width="0.380816" />
+        </svg>
       </div>
       <div className="row-[3_/_4] col-[4_/_5]">
         <p className={`${styles.title} bg-[#E7FE79] inline-block`}>AI时代的顶级电商设计师</p>
         <br />
         <p className={`${styles.subtitle} bg-[#E7FE79] inline-block`}>Top Ecommerce Designer in the Age of AI</p>
       </div>
+      <div className="select-none row-[2_/_3] col-[4_/_5] text-[24px] font-thin w-[35%]"><p>Create pictures that sell your products with Pic Copilot Al.Proven to boost click-through rates by 54.7%!</p></div>
+      <div className="select-none row-[4_/_5] col-[4_/_5] text-[48px] font-normal underline  self-end justify-self-end "><p>访问piccopilot.com即刻体验</p></div>
     </div>
   </div >;
 }

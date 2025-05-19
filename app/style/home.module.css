@@ -48,24 +48,28 @@
   position: absolute;
   left: 28px;
   top: calc(28px + (100% - 28px - 28px) * 7 / 12);
+  transition: 0.2s background-color;
 }
 
 .vec {
   position: absolute;
   right: calc(28px + (100% - 28px - 28px) * 2 / 23);
   top: 28px;
+  transition: 0.2s background-color;
 }
 
 .col {
   position: absolute;
   left: calc(28px + (100% - 28px - 28px) * 7 / 23);
   bottom: 28px;
+  transition: background-color 0.5s, fill 0.2s;
 }
 
 .lay {
   position: absolute;
   right: 28px;
   top: calc(28px + (100% - 28px - 28px) * 7 / 12);
+  transition: 0.2s background-color;
 }
 
 
