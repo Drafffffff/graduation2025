@@ -44,6 +44,7 @@ export default function Home() {
 
     const onCotClick = contextSafe(() => {
       if (!clickable) return
+      setClickable(false)
       gsap.effects.fade("#col");
       gsap.effects.fade("#lay");
       gsap.effects.fade("#vec");
@@ -83,6 +84,8 @@ export default function Home() {
     })
 
     const onColClick = contextSafe(() => {
+      if (!clickable) return
+      setClickable(false)
       gsap.effects.fade("#cot");
       gsap.effects.fade("#lay");
       gsap.effects.fade("#vec");
@@ -99,7 +102,6 @@ export default function Home() {
       });
 
       gsap.to("#colp", {
-        // fontSize: "10rem",
         duration: 1,
         x: "320px",
         ease: "power4.inOut"
@@ -168,7 +170,24 @@ export default function Home() {
         }
       });
     });
+
+    const onLayHover = contextSafe(() => {
+      gsap.to('#laysvg1', { x: 0, duration: 1, ease: "power4.inOut" })
+      gsap.to('#laysvg2', { y: 82, scaleY: 0.26, ease: "power4.inOut" })
+      gsap.to('#layp1', { y: 118, x: 40, ease: "power4.inOut" })
+      gsap.to('#layp2', { x: 71, ease: "power4.inOut" })
+    })
+
+    const onLayLeave = contextSafe(() => {
+      gsap.to('#laysvg1', { x: 225, duration: 0.5, ease: "power4.inOut" })
+      gsap.to('#laysvg2', { y: 44, scaleY: 1, duration: 1, ease: "power4.inOut" })
+      gsap.to('#layp1', { y: 0, x: 0, duration: 1, ease: "power4.inOut" })
+      gsap.to('#layp2', { x: 0, ease: "power4.inOut" })
+    })
+
     const onVecClick = contextSafe(() => {
+      if (!clickable) return
+      setClickable(false)
       gsap.effects.fade("#col");
       gsap.effects.fade("#lay");
       gsap.effects.fade("#cot");
@@ -210,11 +229,9 @@ export default function Home() {
       gsap.timeline().fromTo('#vecP2', { drawSVG: "0%", ease: "power4.inOut" }, { duration: 0.5, delay: 0.05, drawSVG: "100%", })
         .fromTo("#vecP5", { drawSVG: "0%", ease: "power4.inOut" }, { duration: 0.3, drawSVG: "100%", })
       gsap.timeline().fromTo('#vecP3', { drawSVG: "0", ease: "power4.inOut" }, { duration: 0.5, drawSVG: " 100% ", })
-        .fromTo("#vecP6", { drawSVG: "0%", ease: "power4.inOut" }, { duration: 0.3, drawSVG: "100%", })
-
-
-
+      // .fromTo("#vecP6", { drawSVG: "0%", ease: "power4.inOut" }, { duration: 0.3, drawSVG: "100%", })
     })
+
     cotEle.addEventListener('click', onCotClick);
     cotEle.addEventListener('mouseenter', onCotHover);
     vecEle.addEventListener('click', onVecClick);
@@ -223,6 +240,9 @@ export default function Home() {
     colEle.addEventListener('mouseenter', onColHover);
     colEle.addEventListener('mouseleave', onColLeave);
     layEle.addEventListener('click', onLayClick);
+    layEle.addEventListener('mouseenter', onLayHover);
+    layEle.addEventListener('mouseleave', onLayLeave);
+
     return () => {
       cotEle.removeEventListener('click', onCotClick);
       cotEle.removeEventListener('mouseenter', onCotHover);
@@ -232,6 +252,8 @@ export default function Home() {
       colEle.removeEventListener('mouseenter', onColHover);
       colEle.removeEventListener('mouseleave', onColLeave);
       layEle.removeEventListener('click', onLayClick);
+      layEle.removeEventListener('mouseenter', onLayHover);
+      layEle.removeEventListener('mouseleave', onLayLeave);
     };
   }, { scope: gsapContainer });
 
@@ -304,7 +326,6 @@ export default function Home() {
         <svg width="278" height="145" viewBox="0 0 278 145" fill="none" xmlns="http://www.w3.org/2000/svg" className="cotSVG absolute translate-x-6 translate-y-16 group-hover:invert duration-50 ease-in-out ">
           <path id="cotPath" d="M1.04557 78.8975C2.54225 55.0923 16.5698 -2.60804 61.2758 1.23771C118.657 6.17384 93.9234 144.706 142.349 143.874C203.121 142.83 265.793 -38.9133 277.225 26.2368" stroke="black" strokeWidth="0.862676" />
         </svg>
-        {/* <img src="/home/cot.png" className="absolute translate-x-6 translate-y-16 group-hover:invert duration-50 ease-in-out " /> */}
       </div>
       <div id="vec" ref={vecGSAPRef} className={`${styles.vec} group hover:bg-[#000] bg-[#47A8E9]  flex flex-col justify-between  cursor-pointer select-none w-[360px] h-[230px]`}>
         <p id="vecp" className=" font-thin text-8 self-start group-hover:invert duration-50 ease-in-out ">Semantic Embedding</p>
@@ -330,17 +351,17 @@ export default function Home() {
         </svg>
       </div>
       <div id="lay" ref={layGSAPRef} className={`${styles.lay} group bg-[#FFA268] hover:bg-[#000] col-span-2 flex flex-col justify-between cursor-pointer select-none w-[360px] h-[230px]`}>
-        <p id="layp" className=" font-thin text-8 self-start border-[0.5px] group-hover:invert duration-50 ease-in-out">Flex Layout</p>
-        <p id="layp" className=" font-thin text-7xl self-start border-[0.5px] group-hover:invert duration-50 ease-in-out ">版式文法</p>
-        <svg width="136" height="97" className="absolute translate-x-[225px]  group-hover:invert duration-50 ease-in-out" viewBox="0 0 136 97" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="0.523416" y="0.604471" width="134.428" height="95.5849" stroke="black" stroke-width="0.380816" />
-          <path d="M0.535529 96.155L134.964 0.569708" stroke="black" stroke-width="0.380816" />
-          <path d="M0.536133 0.572266L134.964 96.1572" stroke="black" stroke-width="0.380816" />
+        <p id="layp1" className=" font-thin text-8 self-start border-[0.5px] group-hover:invert duration-50 ease-in-out">Flex Layout</p>
+        <p id="layp2" className=" font-thin text-7xl self-start border-[0.5px] group-hover:invert duration-50 ease-in-out ">版式文法</p>
+        <svg id="laysvg1" width="136" height="97" className="absolute translate-x-[225px] group-hover:invert duration-50  ease-in-out" viewBox="0 0 136 97" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0.523416" y="0.604471" width="134.428" height="95.5849" stroke="black" strokeWidth="0.380816" />
+          <path d="M0.535529 96.155L134.964 0.569708" stroke="black" strokeWidth="0.380816" />
+          <path d="M0.536133 0.572266L134.964 96.1572" stroke="black" strokeWidth="0.380816" />
         </svg>
-        <svg width="30" className="absolute translate-y-[44px]  group-hover:invert duration-50 ease-in-out" height="97" viewBox="0 0 30 97" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="0.452127" y="0.370096" width="29.3229" height="95.5849" stroke="black" stroke-width="0.380816" />
-          <path d="M0.529856 95.7312L29.6973 0.5959" stroke="black" stroke-width="0.380816" />
-          <path d="M29.4718 95.7997L0.755371 0.527344" stroke="black" stroke-width="0.380816" />
+        <svg id="laysvg2" width="30" className="absolute translate-y-[44px]  group-hover:invert duration-50 ease-in-out" height="97" viewBox="0 0 30 97" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0.452127" y="0.370096" width="29.3229" height="95.5849" stroke="black" strokeWidth="0.380816" />
+          <path d="M0.529856 95.7312L29.6973 0.5959" stroke="black" strokeWidth="0.380816" />
+          <path d="M29.4718 95.7997L0.755371 0.527344" stroke="black" strokeWidth="0.380816" />
         </svg>
       </div>
       <div className="row-[3_/_4] col-[4_/_5]">
