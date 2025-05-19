@@ -17,6 +17,7 @@
 }
 
 html {
+  font-family: 'Noto Sans SC';
   overflow: auto;
   /* 保持滚动功能 */
   -ms-overflow-style: none;
@@ -28,4 +29,67 @@ html {
 ::-webkit-scrollbar {
   display: none;
   /* Chrome/Safari/Opera */
+}
+
+@font-face {
+  font-family: 'Noto Sans SC';
+  src: url('/font/NotoSansSC-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Sans SC';
+  src: url('font/NotoSansSC-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Sans SC';
+  src: url('font/NotoSansSC-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Sans SC';
+  src: url('font/NotoSansSC-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Sans SC';
+  src: url('font/NotoSansSC-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Sans SC';
+  src: url('font/NotoSansSC-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Sans SC';
+  src: url('font/NotoSansSC-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Sans SC';
+  src: url('font/NotoSansSC-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Noto Sans SC';
+  src: url('font/NotoSansSC-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
 }

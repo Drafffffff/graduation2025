@@ -1,0 +1,84 @@
+.hLine1 {
+  position: absolute;
+  top: 28px;
+}
+
+.hLine2 {
+  position: absolute;
+  top: calc(28px + (100% - 28px - 28px) * 5 / 12);
+}
+
+.hLine3 {
+  position: absolute;
+  top: calc(28px + (100% - 28px - 28px) * 7 / 12);
+}
+
+.hLine4 {
+  position: absolute;
+  top: calc(100% - 28px);
+}
+
+.vLine1 {
+  position: absolute;
+  left: 28px;
+}
+
+.vLine2 {
+  position: absolute;
+  left: calc(28px + (100% - 28px - 28px) * 5 / 23);
+}
+
+.vLine3 {
+  position: absolute;
+  left: calc(28px + (100% - 28px - 28px) * 7 / 23);
+}
+
+.vLine4 {
+  position: absolute;
+  left: calc(28px + (100% - 28px - 28px) * 21 / 23);
+}
+
+.vLine5 {
+  position: absolute;
+  left: calc(100% - 28px);
+}
+
+
+.cot {
+  position: absolute;
+  left: 28px;
+  top: calc(28px + (100% - 28px - 28px) * 7 / 12);
+}
+
+.vec {
+  position: absolute;
+  right: calc(28px + (100% - 28px - 28px) * 2 / 23);
+  top: 28px;
+}
+
+.col {
+  position: absolute;
+  left: calc(28px + (100% - 28px - 28px) * 7 / 23);
+  bottom: 28px;
+}
+
+.lay {
+  position: absolute;
+  right: 28px;
+  top: calc(28px + (100% - 28px - 28px) * 7 / 12);
+}
+
+
+.title {
+  user-select: none;
+  font-size: calc(100% * 7);
+  font-weight: 300;
+  line-height: 1;
+}
+
+.subtitle {
+  user-select: none;
+  font-size: calc(100% * 3.5);
+  font-weight: 100;
+  line-height: 1;
+}

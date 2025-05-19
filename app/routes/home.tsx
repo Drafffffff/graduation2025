@@ -1,7 +1,11 @@
 import { Link, useNavigate } from "react-router";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import styles from "../style/home.module.css"
+import 'swiper/css';
 import type { Route } from "./+types/home";
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react";
+import { Autoplay } from 'swiper/modules';
 import { useRef, useState } from "react";
 import { Flip } from "gsap/Flip";
 gsap.registerPlugin(Flip);
@@ -16,7 +20,6 @@ export function meta({ }: Route.MetaArgs) {
 export default function Home() {
   const gsapContainer = useRef<HTMLDivElement>(null)
   const cotGSAPRef = useRef<HTMLDivElement>(null)
-  const cmfGSAPRef = useRef<HTMLDivElement>(null)
   const colGSAPRef = useRef<HTMLDivElement>(null)
   const vecGSAPRef = useRef<HTMLDivElement>(null)
   const layGSAPRef = useRef<HTMLDivElement>(null)
@@ -28,8 +31,7 @@ export default function Home() {
     const vecEle = vecGSAPRef.current
     const colEle = colGSAPRef.current
     const layEle = layGSAPRef.current
-    const cmfEle = cmfGSAPRef.current
-    if (!cotEle || !contextSafe || !vecEle || !colEle || !layEle || !cmfEle) return
+    if (!cotEle || !contextSafe || !vecEle || !colEle || !layEle) return
     gsap.registerEffect({
       name: "fade",
       effect: (targets: any, config: any) => {
@@ -39,53 +41,13 @@ export default function Home() {
       extendTimeline: true, //now you can call the effect directly on any GSAP timeline to have the result immediately inserted in the position you define (default is sequenced at the end)
     });
 
-    //初始动画
-    gsap.from("#cot", {
-      x: "-100%",
-      duration: 1,
-      ease: "power4.out",
-      delay: 0,
-    })
-
-    gsap.from("#cmf", {
-      y: "-100%",
-      duration: 1,
-      ease: "power4.out",
-      delay: 0.1,
-    })
-
-    gsap.from("#vec", {
-      y: "100%",
-      duration: 1,
-      ease: "power4.out",
-      delay: 0.2,
-    })
-
-    gsap.from("#lay", {
-      x: "100%",
-      duration: 1,
-      ease: "power4.out",
-      delay: 0.3
-    })
-
-    gsap.from("#col", {
-      scale: 0,
-      duration: 1,
-      ease: "power4.out",
-
-      delay: 0.4
-    })
-
     const onCotClick = contextSafe(() => {
       if (!clickable) return
-      gsap.effects.fade("#cmf");
       gsap.effects.fade("#col");
       gsap.effects.fade("#lay");
       gsap.effects.fade("#vec");
-
       const state = Flip.getState(cotEle, { props: "backgroundColor" });
       const placeholder = createPlaceholder(cotEle);
-
       gsap.set(cotEle, {
         width: "100vw",
         height: "100vh",
@@ -95,7 +57,6 @@ export default function Home() {
         backgroundColor: "#666",
         zIndex: 100,
       });
-
       gsap.set("#cotp", { fontSize: "4.5rem" });
       gsap.to("#cotp", {
         fontSize: "10rem",
@@ -103,7 +64,6 @@ export default function Home() {
         x: "320px",
         ease: "power4.inOut"
       });
-
       Flip.from(state, {
         duration: 1,
         ease: "power4.inOut",
@@ -116,16 +76,11 @@ export default function Home() {
     });
 
     const onColClick = contextSafe(() => {
-
-      if (!clickable) return
-      gsap.effects.fade("#cmf");
       gsap.effects.fade("#cot");
       gsap.effects.fade("#lay");
       gsap.effects.fade("#vec");
-
       const state = Flip.getState(colEle, { props: "backgroundColor" });
       const placeholder = createPlaceholder(colEle);
-
       gsap.set(colEle, {
         width: "100vw",
         height: "100vh",
@@ -155,7 +110,6 @@ export default function Home() {
       });
     });
     const onLayClick = contextSafe(() => {
-      gsap.effects.fade("#cmf");
       gsap.effects.fade("#cot");
       gsap.effects.fade("#col");
       gsap.effects.fade("#vec");
@@ -192,7 +146,6 @@ export default function Home() {
       });
     });
     const onVecClick = contextSafe(() => {
-      gsap.effects.fade("#cmf");
       gsap.effects.fade("#col");
       gsap.effects.fade("#lay");
       gsap.effects.fade("#cot");
@@ -228,56 +181,18 @@ export default function Home() {
         }
       });
     });
-    const onCmfClick = contextSafe(() => {
-      gsap.effects.fade("#cot");
-      gsap.effects.fade("#col");
-      gsap.effects.fade("#lay");
-      gsap.effects.fade("#vec");
-      const state = Flip.getState(cmfEle, { props: "backgroundColor" })
-      createPlaceholder(cmfEle)
-      gsap.set(cmfEle, {
-        width: "100vw",
-        height: "100vh",
-        position: "absolute",
-        backgroundColor: "#666",
-        left: 0,
-        top: 0,
-      })
-      gsap.set("#cmfp", {
-        fontSize: "60px",
-      })
-      gsap.to("#cmfp", {
-        fontSize: "10rem",
-        duration: 1,
-        x: "320px",
-        ease: "power4.inOut",
-      })
-      Flip.from(state, {
-        duration: 1,
-        ease: "power4.inOut",
-        absolute: true,
-        onComplete: () => {
-          nav("/cmf")
-
-        }
-      })
-
-
-
-    });
     cotEle.addEventListener('click', onCotClick);
-    cmfEle.addEventListener('click', onCmfClick);
     vecEle.addEventListener('click', onVecClick);
     colEle.addEventListener('click', onColClick);
     layEle.addEventListener('click', onLayClick);
     return () => {
       cotEle.removeEventListener('click', onCotClick);
-      cmfEle.removeEventListener('click', onCmfClick);
       vecEle.removeEventListener('click', onVecClick);
       colEle.removeEventListener('click', onColClick);
       layEle.removeEventListener('click', onLayClick);
     };
   }, { scope: gsapContainer });
+
   function createPlaceholder(element: any) {
     const clone = element.cloneNode(true);
     clone.removeAttribute('id');
@@ -288,23 +203,85 @@ export default function Home() {
     return clone;
   }
 
-  return <div ref={gsapContainer} className="overflow-hidden main-container bg-white  w-screen h-screen grid grid-cols-[3fr_5fr_3fr] gap-2  grid-rows-3   ">
-    <div
-      ref={cotGSAPRef}
-      id="cot" className="bg-[#FF8C19] col-span-2 flex justify-center items-center cursor-pointer select-none" >
-      <p id="cotp" className="text-white font-bold text-7xl ">COT</p>
+  return <div className="overflow-hidden">
+
+    <div className="absolute w-screen h-screen flex justify-center items-center z-0 opacity-30">
+      <Swiper
+        spaceBetween={50}
+        slidesPerView={6}
+        // onSlideChange={() => console.log('slide change')}
+        loop={true}
+        // autoHeight={true}
+        autoplay={{
+          delay: 0,
+          // disableOnInteraction: false,
+        }}
+        speed={2000}
+        freeMode={true}
+        onSwiper={(swiper) => console.log(swiper)}
+        modules={[Autoplay]}
+        className="h-[50%] w-full"
+      >
+        {
+          Array.from({ length: 30 }).map((_, index) => {
+            const offY = Math.random() * 300
+            return (<SwiperSlide >
+              <div className={`flex h-full w-full justify-between items-start`}>
+                <img src={`/home/swiper/${index + 1}.png`} className="rounded-2xl" style={{
+                  transform: `translateY(${offY}px)`,
+                }} />
+              </div>
+            </SwiperSlide>)
+          })
+        }
+      </Swiper></div>
+    <div className={`absolute w-screen h-screen pointer-events-none z-10`}>
+      <div className={`${styles.hLine} absolute w-screen h-screen`}>
+        <div className={`${styles.hLine1} w-screen h-[1px] bg-black`}></div>
+        <div className={`${styles.hLine2} w-screen h-[1px] bg-black`}></div>
+        <div className={`${styles.hLine3} w-screen h-[1px] bg-black`}></div>
+        <div className={`${styles.hLine4} w-screen h-[1px] bg-black`}></div>
+      </div>
+      <div className={`${styles.vLine} absolute w-screen h-screen`}>
+        <div className={`${styles.vLine1} w-[1px] h-screen bg-black`}></div>
+        <div className={`${styles.vLine2} w-[1px] h-screen bg-black`}></div>
+        <div className={`${styles.vLine3} w-[1px] h-screen bg-black`}></div>
+        <div className={`${styles.vLine4} w-[1px] h-screen bg-black`}></div>
+        <div className={`${styles.vLine5} w-[1px] h-screen bg-black`}></div>
+      </div>
     </div>
-    <div id="cmf" ref={cmfGSAPRef} className="bg-[#AA4779] col-span-1 row-span-2 flex justify-center items-center">
-      <p id="cmfp" className="text-white font-bold text-6xl ">CMF</p>
+    <div ref={gsapContainer} className={`relative overflow-hidden main-container w-screen h-screen grid grid-cols-[28px_2.5fr_1fr_7fr_1fr_28px] grid-rows-[28px_2.5fr_1fr_2.5fr_28px] z-20`} >
+      <div className="row-[2_/_3] col-[2_/_3]">
+        <img src="/home/logo.png" />
+      </div>
+      <div
+        ref={cotGSAPRef}
+        id="cot" className={`${styles.cot}  bg-[#3CD6A3] flex flex-col justify-between cursor-pointer select-none w-[360px] h-[230px]`} >
+        <p id="cotp" className=" font-thin text-8 self-start ">Chain of Thought</p>
+        <p id="cotp" className=" font-thin text-8xl  ">思维链</p>
+        <img src="/home/cot.png" className="absolute translate-x-6 translate-y-16 " />
+      </div>
+      <div id="vec" ref={vecGSAPRef} className={`${styles.vec} bg-[#47A8E9]  flex flex-col justify-between  cursor-pointer select-none w-[360px] h-[230px]`}>
+        <p id="vecp" className=" font-thin text-8 self-start ">Semantic Embedding</p>
+        <p id="vecp" className=" font-thin text-7xl ">语义向量</p>
+        <img src="/home/vec.png" className="absolute translate-x-[274px]  " />
+      </div>
+      <div id="col" ref={colGSAPRef} className={`${styles.col} bg-[#F7A1DB] flex flex-col justify-between cursor-pointer select-none w-[360px] h-[230px]`}>
+        <p id="colp" className=" font-thin text-8 self-start ">Color  Algorithm</p>
+        <p id="colp" className=" font-thin text-7xl ">配色算法</p>
+        <img src="/home/color.png" className="absolute translate-x-[254px]  " />
+      </div>
+      <div id="lay" ref={layGSAPRef} className={`${styles.lay} bg-[#FFA268] col-span-2 flex flex-col justify-between cursor-pointer select-none w-[360px] h-[230px]`}>
+        <p id="layp" className=" font-thin text-8 self-start border-[0.5px]">Flex Layout</p>
+        <p id="layp" className=" font-thin text-7xl self-start border-[0.5px] ">版式文法</p>
+        <img src="/home/lay1.png" className="absolute translate-x-[225px]  " />
+        <img src="/home/lay2.png" className="absolute translate-y-[44px]  " />
+      </div>
+      <div className="row-[3_/_4] col-[4_/_5]">
+        <p className={`${styles.title} bg-[#E7FE79] inline-block`}>AI时代的顶级电商设计师</p>
+        <br />
+        <p className={`${styles.subtitle} bg-[#E7FE79] inline-block`}>Top Ecommerce Designer in the Age of AI</p>
+      </div>
     </div>
-    <div id="vec" ref={vecGSAPRef} className="bg-[#77E0F3] row-span-2 flex justify-center items-center">
-      <p id="vecp" className="text-white font-bold text-7xl ">Vector</p>
-    </div>
-    <div id="col" ref={colGSAPRef} className="bg-[#FBD14B] flex justify-center items-center">
-      <p id="colp" className="text-white font-bold text-7xl ">Colors</p>
-    </div>
-    <div id="lay" ref={layGSAPRef} className="bg-[#B4DC19] col-span-2 flex justify-center items-center">
-      <p id="layp" className="text-white font-bold text-7xl ">Layout</p>
-    </div>
-  </div>;
+  </div >;
 }
