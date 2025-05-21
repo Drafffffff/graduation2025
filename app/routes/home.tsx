@@ -262,6 +262,7 @@ export default function Home() {
       })
 
       gsap.set("#layp2", {
+        border: "none",
         fontWeight: "700",
         filter: "invert(1)"
       })
@@ -465,6 +466,7 @@ export default function Home() {
       <div id="logo" className="row-[2_/_3] col-[2_/_3]">
         <img src="/home/logo.png" />
       </div>
+
       <div
         ref={cotGSAPRef}
         id="cot" className={`${styles.cot} group  bg-[#3CD6A3] flex hover:bg-[#000]  flex-col justify-between cursor-pointer select-none w-[360px] h-[230px]`} >
@@ -474,6 +476,7 @@ export default function Home() {
           <path id="cotPath" d="M1.04557 78.8975C2.54225 55.0923 16.5698 -2.60804 61.2758 1.23771C118.657 6.17384 93.9234 144.706 142.349 143.874C203.121 142.83 265.793 -38.9133 277.225 26.2368" stroke="black" strokeWidth="0.862676" />
         </svg>
       </div>
+
       <div id="vec" ref={vecGSAPRef} className={`${styles.vec} group hover:bg-[#000] bg-[#47A8E9]  flex flex-col justify-between  cursor-pointer select-none w-[360px] h-[230px]`}>
         <p id="vecp" className=" font-thin text-8 self-start group-hover:invert duration-50 ease-in-out ">Semantic Embedding</p>
         <p id="vecp2" className=" font-thin text-7xl group-hover:invert duration-50 ease-in-out">语义向量</p>
@@ -482,8 +485,8 @@ export default function Home() {
           <path id="vecP2" d="M0 65.6074H76" stroke="black" strokeWidth="0.842149" />
           <path id="vecP3" d="M5.18604 74.8691L45 1" stroke="black" strokeWidth="0.842149" />
         </svg>
-
       </div>
+
       <div id="col" ref={colGSAPRef} className={`${styles.col} bg-[#F7A1DB] group hover:bg-[#000] flex flex-col justify-between cursor-pointer select-none w-[360px] h-[230px]`}>
         <p id="colp" className=" font-thin text-8 self-start group-hover:invert duration-50 ease-in-out">Color  Algorithm</p>
         <p id="colp2" className=" font-thin text-7xl group-hover:invert duration-50 ease-in-out">配色算法</p>
@@ -496,6 +499,7 @@ export default function Home() {
           <circle cx="27.132" cy="26.6735" r="26.2243" className="fill-[#FF7070]  group-hover:fill-none group-hover:stroke-white" />
         </svg>
       </div>
+
       <div id="lay" ref={layGSAPRef} className={`${styles.lay} group bg-[#FFA268] hover:bg-[#000] col-span-2 flex flex-col justify-between cursor-pointer select-none w-[360px] h-[230px]`}>
         <p id="layp1" className=" font-thin text-8 self-start border-[1px] group-hover:invert duration-50 ease-in-out">Flex Layout</p>
         <p id="layp2" className=" font-thin text-7xl self-start border-[1px] group-hover:invert duration-50 ease-in-out ">版式文法</p>
