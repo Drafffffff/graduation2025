@@ -1,0 +1,44 @@
+.hLine1 {
+  position: absolute;
+  top: 28px;
+}
+
+.hLine2 {
+  position: absolute;
+  top: calc(28px + (100% - 28px) * 6 / 17.6);
+}
+
+.hLine3 {
+  position: absolute;
+  top: calc(28px + (100% - 28px) * 9 / 17.6);
+}
+
+.hLine4 {
+  position: absolute;
+  top: calc(28px + (100% - 28px) * 14 / 17.6);
+}
+
+.vLine1 {
+  position: absolute;
+  left: 28px;
+}
+
+.vLine2 {
+  position: absolute;
+  left: calc(28px + (100% - 28px - 28px) * 5 / 23);
+}
+
+.vLine3 {
+  position: absolute;
+  left: calc(28px + (100% - 28px - 28px) * 12 / 23);
+}
+
+.vLine4 {
+  position: absolute;
+  left: calc(28px + (100% - 28px - 28px) * 21 / 23);
+}
+
+.vLine5 {
+  position: absolute;
+  left: calc(100% - 28px);
+}

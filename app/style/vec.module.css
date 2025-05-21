@@ -1,0 +1,51 @@
+.landingGrid {
+  display: grid;
+  grid-template-columns: repeat(5, calc(100vh / 3));
+  grid-template-rows: repeat(3, calc(100vh / 3));
+}
+
+
+.hLine1 {
+  position: absolute;
+  top: calc(100vh / 3)
+}
+
+.hLine2 {
+  position: absolute;
+  top: calc(100vh / 3 * 2)
+}
+
+.vLine1 {
+  position: absolute;
+  left: 28px;
+}
+
+.vLine2 {
+  position: absolute;
+  left: calc(28px + 100vh / 3)
+}
+
+.vLine3 {
+  position: absolute;
+  left: calc(28px + 100vh / 3 * 2)
+}
+
+.vLine4 {
+  position: absolute;
+  left: calc(28px + 100vh / 3 * 3)
+}
+
+.vLine5 {
+  position: absolute;
+  left: calc(28px + 100vh / 3 * 4)
+}
+
+.vLine6 {
+  position: absolute;
+  left: calc(28px + 100vh / 3 * 5)
+}
+
+.vLine7 {
+  position: absolute;
+  left: calc(100vw - 28px)
+}
