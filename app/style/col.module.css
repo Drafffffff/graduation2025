@@ -42,3 +42,29 @@
   position: absolute;
   left: calc(100% - 28px);
 }
+
+.colorCard {
+  height: 6rem;
+  /* height: 20rem; */
+  transition: all 0.2s ease-in-out;
+  overflow: hidden;
+}
+
+.colorCard p {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  height: 6rem;
+  font-weight: 100;
+  padding-left: 1rem;
+  padding-top: 0.5rem;
+
+}
+
+.colorCard:hover {
+  height: 8rem;
+}
+
+.colorCard:hover p {
+  opacity: 1;
+
+}

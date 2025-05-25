@@ -430,7 +430,7 @@ export default function Home() {
         }}
         speed={2000}
         freeMode={true}
-        onSwiper={(swiper) => console.log(swiper)}
+        // onSwiper={(swiper) => console.log(swiper)}
         modules={[Autoplay]}
         className="h-[50%] w-full"
       >
