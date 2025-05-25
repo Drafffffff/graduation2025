@@ -3,9 +3,7 @@ import type { Route } from "./+types/home";
 import ColorThief from "color-thief-ts";
 import chroma from "chroma-js"
 import styles from "../style/col.module.css";
-import { Slider, Sketch, Material, Colorful, Compact, Circle, Wheel, Block, Github, Chrome } from '@uiw/react-color';
-import { Alpha, Hue, ShadeSlider, Saturation, hsvaToHslaString } from '@uiw/react-color';
-import { EditableInput, EditableInputRGBA, EditableInputHSLA } from '@uiw/react-color';
+import { Sketch, Colorful, Wheel, Block, Chrome } from '@uiw/react-color';
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -32,7 +30,41 @@ export default function Home() {
   const gsapContainer = useRef<HTMLDivElement>(null)
   const [MainColorPalette, setMainColorPalette] = useState<string[]>([]);
   const [SecColorPalette, setSecColorPalette] = useState<string[]>([]);
-  const [hex, setHex] = useState<string>("#000000");
+  const [hex, setHex] = useState<string>("#ffffff");
+  const [colorPalette, setColorPalette] = useState<Record<string, string>>({});
+  function generatePalette(mainColor: string) {
+    // 解析主色 HSL 分量（Chroma 返回 [h:0-360, s:0-1, l:0-1]）
+    const [h, s, l] = chroma(mainColor).hsl();
+    const normalizedH = h / 360; // 转换为归一化的色相
+    // 生成主色系
+    const primary = chroma.hsl(h, 0.9, 0.6);
+    const primaryContainer = chroma.hsl(h, 0.9, Math.min(0.6 + 0.3, 1));
+    const primaryDark = chroma.hsl(h, 0.9, Math.max(0.6 - 0.25, 0));
+    // 生成邻近色系
+    const similarH = ((normalizedH - 0.2 + 1) % 1) * 360; // 色相偏移并确保在 0-360 之间
+    const similar = chroma.hsl(similarH, 0.9, 0.6);
+    const similarContainer = chroma.hsl(similarH, 0.9, Math.min(0.6 + 0.3, 1));
+    const similarDark = chroma.hsl(similarH, 0.9, Math.max(0.6 - 0.25, 0));
+    // 生成对比色系
+    const contrastH = ((normalizedH + 0.5) % 1) * 360; // 色相对比
+    const contrast = chroma.hsl(contrastH, 0.9, 0.6);
+    const contrastContainer = chroma.hsl(contrastH, 0.9, Math.min(0.6 + 0.3, 1));
+    const contrastDark = chroma.hsl(contrastH, 0.9, Math.max(0.6 - 0.25, 0));
+
+    return {
+      primary: primary.hex(),
+      primaryContainer: primaryContainer.hex(),
+      primaryDark: primaryDark.hex(),
+      similar: similar.hex(),
+      similarContainer: similarContainer.hex(),
+      similarDark: similarDark.hex(),
+      contrast: contrast.hex(),
+      contrastContainer: contrastContainer.hex(),
+      contrastDark: contrastDark.hex(),
+      black: chroma('black').hex(),
+      white: chroma('white').hex()
+    };
+  }
   useGSAP((context, contextSafe) => {
     const ytrans = 28 + (window.innerHeight - 28) * 6 / 17.6
     const xtrans = (28 + (window.innerWidth - 28 - 28) * 5 / 23)
@@ -89,7 +121,6 @@ export default function Home() {
     }
     const getPalette = async () => {
       try {
-        console.log(curImg);
         const colorThief = new ColorThief();
         const palette = await colorThief.getPaletteAsync(`/col/${curImg + 1}.png`, 9);
         const dominantColor = await colorThief.getColorAsync(`/col/${curImg + 1}.png`);
@@ -103,6 +134,11 @@ export default function Home() {
 
 
   }, [curImg])
+  useEffect(() => {
+    const r = generatePalette(hex)
+    setColorPalette(r);
+
+  }, [hex])
 
   return <div id="smooth-wrapper" className={styles.main} ref={gsapContainer}>
     <div id="smooth-content" >
@@ -176,7 +212,7 @@ export default function Home() {
         </div>
         <div className="px-[28px] ">
           <p className="row-[2_/_3] col-[2_/_3] text-[5rem] leading-none font-thin">颜色提取</p>
-          <p className=" text-[2.8rem] leading-none text-gray-400 font-normal ">THE GENERAL PROBLEM-SOLVER</p>
+          <p className=" text-[2.8rem] leading-none text-gray-400 font-normal ">Color Extraction</p>
         </div>
         <Swiper
           slidesPerView={1.8}
@@ -320,10 +356,10 @@ export default function Home() {
           <div id="hLine2" className={`absolute w-screen h-[1px] bg-black translate-y-[calc(8rem+925px+10rem+20rem)]`}></div>
         </div>
         <div className="px-[28px] ">
-          <p className="row-[2_/_3] col-[2_/_3] text-[5rem] leading-none font-thin">颜色提取</p>
-          <p className=" text-[2.8rem] leading-none text-gray-400 font-normal ">THE GENERAL PROBLEM-SOLVER</p>
+          <p className="row-[2_/_3] col-[2_/_3] text-[5rem] leading-none font-thin">调色板</p>
+          <p className=" text-[2.8rem] leading-none text-gray-400 font-normal ">Color Palette</p>
         </div>
-        <div className="flex justify-center items-center h-[20rem]">
+        <div className="flex gap-10 justify-center items-center h-[20rem]">
           <Sketch
             color={hex}
             onChange={(color) => {
@@ -333,6 +369,7 @@ export default function Home() {
 
           <Chrome
             color={hex}
+            showTriangle={false}
             onChange={(color) => {
               setHex(color.hex);
             }}
@@ -351,6 +388,50 @@ export default function Home() {
               setHex(color.hex);
             }}
           />
+
+          <Block
+            color={hex}
+            showTriangle={false}
+            onChange={(color) => {
+              setHex(color.hex);
+            }}
+          />
+
+        </div>
+        <div className="flex">
+          <div className="w-[10rem] h-[10rem]" style={{
+            backgroundColor: colorPalette.primary
+          }}>primary</div>
+          <div className="w-[10rem] h-[10rem]" style={{
+            backgroundColor: colorPalette.primaryContainer
+          }}>primaryContainer</div>
+          <div className="w-[10rem] h-[10rem]" style={{
+            backgroundColor: colorPalette.primaryDark
+          }}>primaryDark</div>
+          <div className="w-[10rem] h-[10rem]" style={{
+            backgroundColor: colorPalette.similar
+          }}>similar</div>
+          <div className="w-[10rem] h-[10rem]" style={{
+            backgroundColor: colorPalette.similarContainer
+          }}>similarContainer</div>
+          <div className="w-[10rem] h-[10rem]" style={{
+            backgroundColor: colorPalette.similarDark
+          }}>similarDark</div>
+          <div className="w-[10rem] h-[10rem]" style={{
+            backgroundColor: colorPalette.contrast
+          }}>contrast</div>
+          <div className="w-[10rem] h-[10rem]" style={{
+            backgroundColor: colorPalette.contrastContainer
+          }}>contrastContainer</div>
+          <div className="w-[10rem] h-[10rem]" style={{
+            backgroundColor: colorPalette.contrastDark
+          }}>contrastDark</div>
+          <div className="w-[10rem] h-[10rem] text-white" style={{
+            backgroundColor: colorPalette.black
+          }}>black</div>
+          <div className="w-[10rem] h-[10rem]" style={{
+            backgroundColor: colorPalette.white
+          }}>white</div>
         </div>
       </div>
     </div>
