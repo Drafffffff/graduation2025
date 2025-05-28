@@ -49,3 +49,18 @@
   position: absolute;
   left: calc(100vw - 28px)
 }
+
+
+.splane {
+  transform: rotate3d(2, -1, -2, -0.2turn) translateX(10rem) translateZ(var(--translateZ));
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 10px 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.splane:hover {
+  transform: rotate3d(2, -1, -2, -0.2turn) translateX(30rem) translateY(0rem) translateZ(var(--translateZ));
+}
+
+.vecTitle {
+  text-align: right;
+}

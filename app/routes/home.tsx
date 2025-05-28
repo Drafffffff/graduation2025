@@ -414,9 +414,9 @@ export default function Home() {
     return clone;
   }
 
-  return <div className="overflow-hidden" ref={gsapContainer}>
+  return <div className="overflow-hidden bg-[#202020]" ref={gsapContainer}>
 
-    <div className="absolute w-screen h-screen flex justify-center items-center z-0 opacity-30">
+    <div className="absolute w-screen h-screen flex justify-center items-center z-0 opacity-60">
       <Swiper
         id="swiper"
         spaceBetween={50}
@@ -449,27 +449,27 @@ export default function Home() {
       </Swiper></div>
     <div className={`absolute w-screen h-screen pointer-events-none z-10`}>
       <div className={`${styles.hLine} absolute w-screen h-screen`}>
-        <div id="hLine1" className={`${styles.hLine1} w-screen h-[1px] bg-black`}></div>
-        <div id="hLine2" className={`${styles.hLine2} w-screen h-[1px] bg-black`}></div>
-        <div id="hLine3" className={`${styles.hLine3} w-screen h-[1px] bg-black`}></div>
-        <div id="hLine4" className={`${styles.hLine4} w-screen h-[1px] bg-black`}></div>
+        <div id="hLine1" className={`${styles.hLine1} w-screen h-[1px] bg-white`}></div>
+        <div id="hLine2" className={`${styles.hLine2} w-screen h-[1px] bg-white`}></div>
+        <div id="hLine3" className={`${styles.hLine3} w-screen h-[1px] bg-white`}></div>
+        <div id="hLine4" className={`${styles.hLine4} w-screen h-[1px] bg-white`}></div>
       </div>
       <div className={`${styles.vLine} absolute w-screen h-screen`}>
-        <div id="vLine1" className={`${styles.vLine1} w-[1px] h-screen bg-black`}></div>
-        <div id="vLine2" className={`${styles.vLine2} w-[1px] h-screen bg-black`}></div>
-        <div id="vLine3" className={`${styles.vLine3} w-[1px] h-screen bg-black`}></div>
-        <div id="vLine4" className={`${styles.vLine4} w-[1px] h-screen bg-black`}></div>
-        <div id="vLine5" className={`${styles.vLine5} w-[1px] h-screen bg-black`}></div>
+        <div id="vLine1" className={`${styles.vLine1} w-[1px] h-screen bg-white`}></div>
+        <div id="vLine2" className={`${styles.vLine2} w-[1px] h-screen bg-white`}></div>
+        <div id="vLine3" className={`${styles.vLine3} w-[1px] h-screen bg-white`}></div>
+        <div id="vLine4" className={`${styles.vLine4} w-[1px] h-screen bg-white`}></div>
+        <div id="vLine5" className={`${styles.vLine5} w-[1px] h-screen bg-white`}></div>
       </div>
     </div>
     <div className={`relative overflow-hidden main-container w-screen h-screen grid grid-cols-[28px_2.5fr_1fr_7fr_1fr_28px] grid-rows-[28px_2.5fr_1fr_2.5fr_28px] z-20`} >
       <div id="logo" className="row-[2_/_3] col-[2_/_3]">
-        <img src="/home/logo.png" />
+        <img src="/home/logo.png" className="invert-100" />
       </div>
 
       <div
         ref={cotGSAPRef}
-        id="cot" className={`${styles.cot} group  bg-[#3CD6A3] flex hover:bg-[#000]  flex-col justify-between cursor-pointer select-none w-[360px] h-[230px]`} >
+        id="cot" className={`${styles.cot} group  bg-[#6CF1AC] flex hover:bg-[#000]  flex-col justify-between cursor-pointer select-none w-[360px] h-[230px]`} >
         <p id="cotp" className="font-thin text-8 self-start group-hover:invert duration-50 ease-in-out">Chain of Thought</p>
         <p id="cotp2" className="font-thin text-8xl group-hover:invert duration-50 ease-in-out  ">思维链</p>
         <svg width="278" height="145" viewBox="0 0 278 145" fill="none" xmlns="http://www.w3.org/2000/svg" className="cotSVG absolute translate-x-6 translate-y-16 group-hover:invert duration-50 ease-in-out ">
@@ -477,7 +477,7 @@ export default function Home() {
         </svg>
       </div>
 
-      <div id="vec" ref={vecGSAPRef} className={`${styles.vec} group hover:bg-[#000] bg-[#47A8E9]  flex flex-col justify-between  cursor-pointer select-none w-[360px] h-[230px]`}>
+      <div id="vec" ref={vecGSAPRef} className={`${styles.vec} group hover:bg-[#000] bg-[#80C4F1]  flex flex-col justify-between  cursor-pointer select-none w-[360px] h-[230px]`}>
         <p id="vecp" className=" font-thin text-8 self-start group-hover:invert duration-50 ease-in-out ">Semantic Embedding</p>
         <p id="vecp2" className=" font-thin text-7xl group-hover:invert duration-50 ease-in-out">语义向量</p>
         <svg width="76" id="vecvec" className="absolute translate-x-[274px] group-hover:invert duration-50 ease-in-out " height="76" viewBox="0 0 76 76" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -487,7 +487,7 @@ export default function Home() {
         </svg>
       </div>
 
-      <div id="col" ref={colGSAPRef} className={`${styles.col} bg-[#F7A1DB] group hover:bg-[#000] flex flex-col justify-between cursor-pointer select-none w-[360px] h-[230px]`}>
+      <div id="col" ref={colGSAPRef} className={`${styles.col} bg-[#F48DD2] group hover:bg-[#000] flex flex-col justify-between cursor-pointer select-none w-[360px] h-[230px]`}>
         <p id="colp" className=" font-thin text-8 self-start group-hover:invert duration-50 ease-in-out">Color  Algorithm</p>
         <p id="colp2" className=" font-thin text-7xl group-hover:invert duration-50 ease-in-out">配色算法</p>
         <svg id="colSvg1" className="absolute translate-x-[254px]  translate-y-[53px]" width="54" height="53" viewBox="0 0 54 53" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -500,7 +500,7 @@ export default function Home() {
         </svg>
       </div>
 
-      <div id="lay" ref={layGSAPRef} className={`${styles.lay} group bg-[#FFA268] hover:bg-[#000] col-span-2 flex flex-col justify-between cursor-pointer select-none w-[360px] h-[230px]`}>
+      <div id="lay" ref={layGSAPRef} className={`${styles.lay} group bg-[#FFA770] hover:bg-[#000] col-span-2 flex flex-col justify-between cursor-pointer select-none w-[360px] h-[230px]`}>
         <p id="layp1" className=" font-thin text-8 self-start border-[1px] group-hover:invert duration-50 ease-in-out">Flex Layout</p>
         <p id="layp2" className=" font-thin text-7xl self-start border-[1px] group-hover:invert duration-50 ease-in-out ">版式文法</p>
         <svg id="laysvg1" width="136" height="97" className="absolute translate-x-[225px] group-hover:invert duration-50  ease-in-out" viewBox="0 0 136 97" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -519,8 +519,8 @@ export default function Home() {
         <br />
         <p id="subTitle" className={`${styles.subtitle} bg-[#E7FE79] inline-block`}>Top Ecommerce Designer in the Age of AI</p>
       </div>
-      <div id="desc" className="select-none row-[2_/_3] col-[4_/_5] text-[24px] font-thin w-[35%]"><p>Create pictures that sell your products with Pic Copilot Al.Proven to boost click-through rates by 54.7%!</p></div>
-      <div id="try" className="select-none row-[4_/_5] col-[4_/_5] text-[48px] font-normal underline  self-end justify-self-end "><p>访问piccopilot.com即刻体验</p></div>
+      <div id="desc" className="select-none row-[2_/_3] col-[4_/_5] text-[24px] font-thin w-[35%] text-white"><p>Create pictures that sell your products with Pic Copilot Al.Proven to boost click-through rates by 54.7%!</p></div>
+      <div id="try" className="select-none row-[4_/_5] col-[4_/_5] text-[48px] font-normal underline  self-end justify-self-end text-white "><p>立刻体验[→]</p></div>
     </div>
   </div >;
 }

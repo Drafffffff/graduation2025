@@ -1,0 +1,233 @@
+[
+  {
+    "id": 1,
+    "fileUrl": "https://autolayout.oss-cn-beijing.aliyuncs.com/background/e65aa53f59064d4fba5ca5591525d820.png?OSSAccessKeyId=LTAI5t6QuPcFFd4HvdBWdaZw&Expires=4840139305&Signature=uyTi6nZlwqdyOrAnQtaQePjev5c%3D",
+    "describe": {
+      "productType": [
+        "美容与健康",
+        "服装与配饰",
+        "家居用品",
+        "消费电子",
+        "手机"
+      ],
+      "cultureTendency": "/",
+      "styleTendency": "甜美清新",
+      "titleUser": "青睐现代时尚美学的年轻人与青少年群体",
+      "historyStyle": "波普艺术",
+      "sense": "宁静、俏皮与振奋人心",
+      "otherSenses": "画面可能唤起甜美的花香联想，并搭配轻柔的环境背景音乐",
+      "festivalNode": [
+        "春季促销",
+        "夏季促销",
+        "情人节促销",
+        "母亲节促销"
+      ],
+      "colorTendency": "粉紫色系",
+      "colorSorting": [
+        "#F18DAF",
+        "#C793F0",
+        "#D6F3FF"
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "fileUrl": "https://autolayout.oss-cn-beijing.aliyuncs.com/background/65155a6e05134197960fae026aa5ed12.png?OSSAccessKeyId=LTAI5t6QuPcFFd4HvdBWdaZw&Expires=4840139306&Signature=Iqdu1%2BfOGkw5j5IMFnW%2BnNqqTTo%3D",
+    "describe": {
+      "productType": [
+        "美容与健康"
+      ],
+      "cultureTendency": "/",
+      "styleTendency": "写实场景",
+      "titleUser": "对美容产品感兴趣的人群",
+      "historyStyle": "波普艺术",
+      "sense": "宁静而奢华的优雅",
+      "otherSenses": "气味如同若有若无的怡人化妆品香气，声音则是化妆品轻触肌肤的细微声响",
+      "festivalNode": [
+        "春季促销",
+        "夏季促销"
+      ],
+      "colorTendency": "中性色系",
+      "colorSorting": [
+        "#E8D4CD",
+        "#CAB5A1",
+        "#F3F2EF"
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "fileUrl": "https://autolayout.oss-cn-beijing.aliyuncs.com/background/blevinsjessica_a_pink_color_gradient_background_with_a_pink_swo_29a2c641-9970-4abd-8866-850ab911b599.png?OSSAccessKeyId=LTAI5t6QuPcFFd4HvdBWdaZw&Expires=4840139307&Signature=yK9qzkweOZzfEC3s6LPUfVvzYNI%3D",
+    "describe": {
+      "productType": [
+        "美容与健康",
+        "服装与配饰",
+        "日常用品"
+      ],
+      "cultureTendency": "/",
+      "styleTendency": "极简精致",
+      "titleUser": "年轻女性与成年女性群体",
+      "historyStyle": "极简主义",
+      "sense": "宁静与优雅",
+      "otherSenses": "气味如同轻柔细腻的花香气息，声音则似微风轻拂般的声响",
+      "festivalNode": [
+        "母亲节促销",
+        "情人节促销"
+      ],
+      "colorTendency": "粉紫色系",
+      "colorSorting": [
+        "#FF69B4",
+        "#FFA07A",
+        "#FFE4E1"
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "fileUrl": "https://autolayout.oss-cn-beijing.aliyuncs.com/background/cce3241799ff46c08bcd593944120c15.png?OSSAccessKeyId=LTAI5t6QuPcFFd4HvdBWdaZw&Expires=4840139305&Signature=Xn4Szhmea3SQb0gWGSjpttPxdCY%3D",
+    "describe": {
+      "productType": [
+        "消费电子",
+        "美容与健康",
+        "手机",
+        "电脑与办公",
+        "汽车及配件"
+      ],
+      "cultureTendency": "/",
+      "styleTendency": "前沿潮流",
+      "titleUser": "科技爱好者、精通技术的年轻人、专业人士",
+      "historyStyle": "国际风格",
+      "sense": "流畅、现代与创新",
+      "otherSenses": "若有若无的新科技气息，伴随如柔和电子嗡鸣般顺滑的声响",
+      "festivalNode": [
+        "夏季促销",
+        "冬季促销"
+      ],
+      "colorTendency": "蓝绿色系",
+      "colorSorting": [
+        "#e8e8e8",
+        "#b8e1ff",
+        "#f4e1ff"
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "fileUrl": "https://autolayout.oss-cn-beijing.aliyuncs.com/background/2.jpg?OSSAccessKeyId=LTAI5t6QuPcFFd4HvdBWdaZw&Expires=4840139305&Signature=l%2FTKU6pABYpK905ky2ApCZETzzo%3D",
+    "describe": {
+      "productType": [
+        "美容与健康",
+        "服装与配饰",
+        "家居用品",
+        "日常用品"
+      ],
+      "cultureTendency": "/",
+      "styleTendency": "甜美清新",
+      "titleUser": "注重美学与自我护理产品的年轻群体，尤其是女性用户",
+      "historyStyle": "波普艺术",
+      "sense": "背景传递出温暖、柔软及温馨宜人的氛围感",
+      "otherSenses": "气息如鲜花绽放般清新芬芳，声响如风铃般轻柔悦耳",
+      "festivalNode": [
+        "情人节促销",
+        "母亲节促销",
+        "春季促销"
+      ],
+      "colorTendency": "粉紫色系",
+      "colorSorting": [
+        "#F48FB1",
+        "#FFCDD2",
+        "#FFE0B2"
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "fileUrl": "https://autolayout.oss-cn-beijing.aliyuncs.com/background/%E8%93%9D%E7%B2%89%E8%89%B2%E6%8A%BD%E8%B1%A1%E6%9B%B2%E7%BA%BF.jpg?OSSAccessKeyId=LTAI5t6QuPcFFd4HvdBWdaZw&Expires=4840139532&Signature=TSPhAgsFIvdnPjdZ8fCAho8t9mU%3D",
+    "describe": {
+      "productType": [
+        "美容与健康",
+        "服装与配饰",
+        "家居用品",
+        "手机",
+        "电脑与办公"
+      ],
+      "cultureTendency": "/",
+      "styleTendency": "甜美清新",
+      "titleUser": "偏爱柔和粉彩色系美学的年轻女性群体",
+      "historyStyle": "孟菲斯设计",
+      "sense": "平静、舒缓与清新",
+      "otherSenses": "淡雅花香气息与微风轻拂的声响",
+      "festivalNode": [
+        "母亲节促销",
+        "情人节促销",
+        "春季促销"
+      ],
+      "colorTendency": "粉紫色系",
+      "colorSorting": [
+        "#f0c0d8",
+        "#dfeef5",
+        "#c3b4e1"
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "fileUrl": "https://autolayout.oss-cn-beijing.aliyuncs.com/background/54acd25e41ae4ae5a1c82c5f41721976.png?OSSAccessKeyId=LTAI5t6QuPcFFd4HvdBWdaZw&Expires=4840139308&Signature=9RGCK9o1FI96ziWUPYClyxHjxQQ%3D",
+    "describe": {
+      "productType": [
+        "消费电子",
+        "美容与健康",
+        "服装与配饰",
+        "手机",
+        "电脑与办公",
+        "汽车及配件"
+      ],
+      "cultureTendency": "/",
+      "styleTendency": "前沿潮流",
+      "titleUser": "科技爱好者、时尚先锋人士、专业人士",
+      "historyStyle": "国际风格",
+      "sense": "活力四射、充满未来感",
+      "otherSenses": "背景带有微弱电流声，气息融合新电子产品与金属质感",
+      "festivalNode": [
+        "春季促销",
+        "夏季促销",
+        "情人节促销",
+        "圣诞节促销"
+      ],
+      "colorTendency": "橙黑配色",
+      "colorSorting": [
+        "#FF8C00",
+        "#000000",
+        "#FFD700"
+      ]
+    }
+  },
+  {
+    "id": 8,
+    "fileUrl": "https://autolayout.oss-cn-beijing.aliyuncs.com/background/4299238bcdca4c85b685ca8b2500ef94.2.png?OSSAccessKeyId=LTAI5t6QuPcFFd4HvdBWdaZw&Expires=4840139310&Signature=5EdoNmA2FBEhhdxzN0l7Y7nhkow%3D",
+    "describe": {
+      "productType": [
+        "美容与健康",
+        "服装与配饰",
+        "家居用品"
+      ],
+      "cultureTendency": "背景采用暖调棕褐色美学，呼应日本传统极简风格，体现该国文化中对简约、优雅及与自然深度连结的追求",
+      "styleTendency": "极简精致",
+      "titleUser": "偏好精致优雅风格的成年群体",
+      "historyStyle": "国际风格",
+      "sense": "背景传递出宁静、温暖与低调奢华的氛围",
+      "otherSenses": "唤起温暖沙滩的清新气息与海浪轻拍海岸的声响",
+      "festivalNode": [
+        "秋季促销",
+        "母亲节促销",
+        "情人节促销"
+      ],
+      "colorTendency": "棕米色系",
+      "colorSorting": [
+        "#C4A484",
+        "#A97142",
+        "#8B5A2B"
+      ]
+    }
+  }
+]

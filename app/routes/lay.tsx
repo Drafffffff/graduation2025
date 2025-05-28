@@ -121,7 +121,51 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="bg-white w-[100vw] h-[100vh]"></div>
+      <div className="h-[20rem] w-screen bg-white">
+        <div className={`${styles.vLine} absolute w-screen h-full`}>
+          <div id="vLine1" className={`${styles.vLine1} w-[1px] h-full bg-black`}></div>
+          <div id="vLine2" className={`${styles.vLine2} w-[1px] h-full bg-black`}></div>
+          <div id="vLine3" className={`${styles.vLine3} w-[1px] h-full bg-black`}></div>
+          <div id="vLine4" className={`${styles.vLine4} w-[1px] h-full bg-black`}></div>
+          <div id="vLine5" className={`${styles.vLine5} w-[1px] h-full bg-black`}></div>
+        </div>
+        <div>
+        </div>
+      </div>
+      <div className="h-[100vh] w-screen bg-white">
+        <div className={`${styles.vLine} absolute w-screen h-full`}>
+          <div id="vLine1" className={`${styles.vLine1} w-[1px] h-full bg-black`}></div>
+          <div id="vLine2" className={`${styles.vLine2} w-[1px] h-full bg-black`}></div>
+          <div id="vLine3" className={`${styles.vLine3} w-[1px] h-full bg-black`}></div>
+          <div id="vLine4" className={`${styles.vLine4} w-[1px] h-full bg-black`}></div>
+          <div id="vLine5" className={`${styles.vLine5} w-[1px] h-full bg-black`}></div>
+        </div>
+        <div className="flex flex-row w-full justify-between">
+          <div className="px-[28px] ">
+            <p className="row-[2_/_3] col-[2_/_3] text-[5rem] leading-none font-thin">
+              盒子模型
+            </p>
+            <p className=" text-[2.8rem] leading-none text-gray-400 font-normal ">Box Model</p>
+          </div>
+        </div>
+      </div>
+      <div className="h-[100vh] w-screen bg-white">
+        <div className={`${styles.vLine} absolute w-screen h-full`}>
+          <div id="vLine1" className={`${styles.vLine1} w-[1px] h-full bg-black`}></div>
+          <div id="vLine2" className={`${styles.vLine2} w-[1px] h-full bg-black`}></div>
+          <div id="vLine3" className={`${styles.vLine3} w-[1px] h-full bg-black`}></div>
+          <div id="vLine4" className={`${styles.vLine4} w-[1px] h-full bg-black`}></div>
+          <div id="vLine5" className={`${styles.vLine5} w-[1px] h-full bg-black`}></div>
+        </div>
+        <div className="flex flex-row w-full justify-between">
+          <div className="px-[28px] ">
+            <p className="row-[2_/_3] col-[2_/_3] text-[5rem] leading-none font-thin">
+              响应式布局
+            </p>
+            <p className=" text-[2.8rem] leading-none text-gray-400 font-normal ">Flex Layout</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div >;
 }
