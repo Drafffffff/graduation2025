@@ -1,7 +1,6 @@
 .spin {
   animation: spin 1s linear infinite;
   transform-origin: center center;
-
 }
 
 @keyframes spin {

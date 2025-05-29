@@ -1,15 +1,30 @@
 import Back from "~/components/back";
 import styles from "../style/gen.module.css"
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import { useGSAP } from "@gsap/react";
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
-import { useState } from "react";
+import { useRef, useState } from "react";
+import gsap from "gsap"
+import { useNavigate } from "react-router";
 
+gsap.registerPlugin(useGSAP);
 export default function Gen() {
+  const gsapContainer = useRef<HTMLDivElement>(null)
   const [inputMessage, setInputMessage] = useState<string>("")
   const [sendState, setSendState] = useState(0)
-  return <>
+
+  const buttonRef = useRef<HTMLImageElement>(null)
+  const nav = useNavigate()
+  useGSAP((context, contextSafe) => {
+    const butEl = buttonRef.current
+    if (!butEl || !contextSafe) return
+
+    gsap.from(".sper", { opacity: 0, duration: 1, ease: "power4.inOut", stagger: 0.5, delay: 0.5 })
+    gsap.from("#input", { opacity: 0, duration: 1, ease: "power4.inOut", delay: 0.5 })
+
+  }, { scope: gsapContainer })
+  return <div ref={gsapContainer}>
     <div className="w-screen h-screen overflow-hidden bg-black z-0">
       <div className="h-screen w-screen fixed" style={{
         zIndex: 2000,
@@ -48,12 +63,17 @@ export default function Gen() {
 
 
       </div>
-      <div className="h-screen w-screen fixed top-0 p-[10rem] flex flex-col-reverse justify-start items-start" style={{
+      <div id="input" className="h-screen w-screen fixed top-0 p-[10rem] flex flex-col-reverse justify-start items-start" style={{
         zIndex: 2001,
       }}>
         <div className="w-full h-[100px] bg-white flex">
           <input value={inputMessage} className="w-full h-full p-[1rem] text-[1.3rem]" placeholder="请输入你的海报需求" />
-          {!sendState ? <img onClick={() => { setSendState(1) }} src="/gen/btn.svg" className="h-[75px] m-auto pr-3 select-none cursor-pointer" /> : <img src="/gen/loading.svg" className={`h-[75px] m-auto pr-3 select-none cursor-pointer ${styles.spin}`} />}
+          {!sendState ? <img onClick={() => {
+            setSendState(1);
+            setTimeout(() => { nav("/") }, 2000)
+          }}
+            ref={buttonRef}
+            src="/gen/btn.svg" className="h-[75px]  px-3 m-auto  select-none cursor-pointer" /> : <img src="/gen/loading.svg" className={`h-[75px] m-auto px-3 select-none cursor-pointer ${styles.spin}`} />}
         </div>
         <div className="w-full  h-[100px]  flex items-center cursor-pointer">
           <p className="inline-block bg-white p-5 cursor-pointer rounded-2xl font-thin text-gray-800"
@@ -66,5 +86,5 @@ export default function Gen() {
 
     </div>
     <Back />
-  </>
+  </div>
 }
