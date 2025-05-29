@@ -16,7 +16,7 @@ export default function Back() {
     const onButClick = contextSafe(() => {
       gsap.to("#backbg", {
         opacity: 1,
-        duration: 1,
+        duration: 0.5,
         onComplete: () => {
           nav("/")
         }
@@ -24,7 +24,7 @@ export default function Back() {
 
       gsap.to("#backButton", {
         opacity: 0,
-        duration: 0.6
+        duration: 0.2
       })
 
       // gsap.to('#laysvg2', { y: 44, scaleY: 1, duration: 1, ease: "power4.inOut" })
