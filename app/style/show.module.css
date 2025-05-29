@@ -1,0 +1,54 @@
+.img1 {
+  animation: yoyo 4s ease-in-out infinite alternate;
+}
+
+.img2 {
+  animation: yoyo 3s ease-in-out infinite alternate;
+}
+
+
+.img3 {
+  animation: yoyo 3.3s ease-in-out infinite alternate;
+}
+
+.img4 {
+  animation: yoyo 4.5s ease-in-out infinite alternate;
+}
+
+.img5 {
+  animation: yoyo 3.8s ease-in-out infinite alternate;
+}
+
+.img6 {
+  animation: yoyo 5s ease-in-out infinite alternate;
+}
+
+.img7 {
+  animation: yoyo 3.5s ease-in-out infinite alternate;
+}
+
+.img8 {
+  animation: yoyo 2.5s ease-in-out infinite alternate;
+}
+
+.img9 {
+  animation: yoyo 3.9s ease-in-out infinite alternate;
+}
+
+.img10 {
+  animation: yoyo 4.1s ease-in-out infinite alternate;
+}
+
+.img11 {
+  animation: yoyo 4.5s ease-in-out infinite alternate;
+}
+
+@keyframes yoyo {
+  from {
+    transform: transformY(-1.5rem);
+  }
+
+  to {
+    transform: translateY(1.5rem);
+  }
+}
