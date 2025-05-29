@@ -508,7 +508,7 @@ export default function Home() {
                 <SwiperSlide id={`slide-${index}`} key={index} className="">
                   <img
                     src={`/col/${index + 1}.png`}
-                    className="h-[50rem] w-[80vw] object-cover "
+                    className="cursor-grab h-[50rem] w-[80vw] object-cover "
                   />
                 </SwiperSlide>
               );
