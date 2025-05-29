@@ -60,8 +60,6 @@ export default function Gen() {
           </Swiper>
 
         })}
-
-
       </div>
       <div id="input" className="h-screen w-screen fixed top-0 p-[10rem] flex flex-col-reverse justify-start items-start" style={{
         zIndex: 2001,

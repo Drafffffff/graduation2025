@@ -413,7 +413,7 @@ export default function Home() {
     return clone;
   }
 
-  return <div className="overflow-hidden bg-[#202020]" ref={gsapContainer}>
+  return <div className="overflow-hidden bg-[#880000]" ref={gsapContainer}>
 
     <div className="absolute w-screen h-screen flex justify-center items-center z-0 opacity-60">
       <Swiper
@@ -515,8 +515,11 @@ export default function Home() {
         <br />
         <p id="subTitle" className={`${styles.subtitle} bg-[#E7FE79] inline-block`}>Top Ecommerce Designer in the Age of AI</p>
       </div>
+
       <div id="desc" className="select-none row-[2_/_3] col-[4_/_5] text-[24px] font-thin w-[35%] text-white"><p>Create pictures that sell your products with Pic Copilot Al.Proven to boost click-through rates by 54.7%!</p></div>
-      <div id="try" className={`select-none row-[4_/_5] col-[4_/_5] text-[48px] font-normal underline  self-end justify-self-end text-white  ${styles.underlineHover} z-100  `} onClick={() => { nav("/gen") }}><p>立刻体验[→]</p></div>
+
+      <div id="try" className={`select-none row-[4_/_5] col-[4_/_5] text-[48px] font-normal underline  self-end justify-self-end text-white  ${styles.underlineHover} z-100`} onClick={() => { nav("/gen") }}><p>立刻体验[→]</p>
+      </div>
     </div>
   </div >;
 }
