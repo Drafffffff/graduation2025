@@ -82,10 +82,12 @@ export default function Home() {
     <div id="smooth-content" >
       <div className={` bg-[#000]`} onMouseMove={handleMouseMove}>
         <div className={`absolute w-screen h-screen pointer-events-none z-10`}>
+
           <div className={`${styles.hLine} absolute w-screen h-screen`}>
             <div id="hLine1" className={`${styles.hLine1} w-screen h-[1px] bg-white`}></div>
             <div id="hLine2" className={`${styles.hLine2} w-screen h-[1px] bg-white`}></div>
           </div>
+
           <div className={`${styles.vLine} absolute w-screen h-screen`}>
             <div id="vLine1" className={`${styles.vLine1} w-[1px] h-screen bg-white`}></div>
             <div id="vLine2" className={`${styles.vLine2} w-[1px] h-screen bg-white`}></div>
@@ -95,12 +97,14 @@ export default function Home() {
             <div id="vLine6" className={`${styles.vLine6} w-[1px] h-screen bg-white`}></div>
             <div id="vLine7" className={`${styles.vLine7} w-[1px] h-screen bg-white`}></div>
           </div>
+
         </div>
 
         <p id="title" className="absolute translate-x-[calc(33.333vh+28px)] translate-y-[33.333vh] text-white leading-none font-bold text-[10rem]">语义向量</p>
         <p id="titlec" className="absolute translate-x-[calc(33.333vh+28px-160px)]  text-white leading-none font-bold text-[10rem]">“</p>
         <p id="titlec2" className="absolute translate-x-[calc(133.333vh+28px)] translate-y-[33.333vh]  text-white leading-none font-bold text-[10rem]">”</p>
         <p id="subtitle" className={`${styles.subTitle} absolute row-[1_/_2] col-[2_/_5] translate-x-[calc(33.3vh+28px)] translate-y-[calc(33.3vh-160px)] text-white font-thin leading-none text-[10rem] z-10 self-end select-none`}>Semantic Vector</p>
+
         <div id="descCard" className={`${styles.desc} absolute translate-x-[calc(28px+133.3vh)] translate-y-[66.6vh] h-[33.3vh] w-[calc(100vw-28px-28px-133.3vh)]  text-white font-medium text-[36px] bg-[#093974] flex justify-center flex-col`}>
           <p id="descp1">“</p>
           <p id="descp2" className="text-center">用数学空间表示语义。</p>
@@ -134,7 +138,6 @@ export default function Home() {
           </div>
         </div>
         <div className="w-[100vw]  bg-[#fff] flex justify-start flex-col items-start  ">
-
           <div className={`${styles.hLine} absolute w-screen h-screen`}>
             <div id="hLine1" className={` w-screen h-[1px] bg-black translate-y-[calc(8rem-3px)]`}></div>
             <div id="hLine2" className={` w-screen h-[1px] bg-black translate-y-[calc(8rem-3px+818px)]`}></div>
@@ -190,6 +193,7 @@ export default function Home() {
               <path d="M297.676 618.045L290.236 582.861H294.796L298.492 602.013C298.844 603.901 299.196 605.805 299.548 607.725C299.9 609.613 300.252 611.517 300.604 613.437H300.796C301.212 611.517 301.628 609.613 302.044 607.725C302.46 605.805 302.876 603.901 303.292 602.013L308.14 582.861H312.22L317.116 602.013C317.532 603.901 317.948 605.805 318.364 607.725C318.78 609.613 319.212 611.517 319.66 613.437H319.9C320.22 611.517 320.54 609.613 320.86 607.725C321.18 605.805 321.5 603.901 321.82 602.013L325.612 582.861H329.836L322.588 618.045H317.212L311.884 596.829C311.564 595.421 311.26 594.077 310.972 592.797C310.716 591.485 310.444 590.157 310.156 588.813H309.964C309.708 590.157 309.42 591.485 309.1 592.797C308.78 594.077 308.476 595.421 308.188 596.829L302.956 618.045H297.676ZM345.673 618.669C343.561 618.669 341.577 618.141 339.721 617.085C337.865 615.997 336.377 614.445 335.257 612.429C334.169 610.381 333.625 607.917 333.625 605.037C333.625 602.125 334.169 599.661 335.257 597.645C336.377 595.597 337.865 594.029 339.721 592.941C341.577 591.853 343.561 591.309 345.673 591.309C347.273 591.309 348.793 591.613 350.233 592.221C351.705 592.829 353.001 593.725 354.121 594.909C355.241 596.093 356.121 597.533 356.761 599.229C357.401 600.925 357.721 602.861 357.721 605.037C357.721 607.917 357.161 610.381 356.041 612.429C354.921 614.445 353.449 615.997 351.625 617.085C349.801 618.141 347.817 618.669 345.673 618.669ZM345.673 615.021C347.177 615.021 348.489 614.605 349.609 613.773C350.761 612.941 351.657 611.773 352.297 610.269C352.937 608.765 353.257 607.021 353.257 605.037C353.257 603.021 352.937 601.261 352.297 599.757C351.657 598.253 350.761 597.085 349.609 596.253C348.489 595.421 347.177 595.005 345.673 595.005C344.169 595.005 342.841 595.421 341.689 596.253C340.569 597.085 339.689 598.253 339.049 599.757C338.441 601.261 338.137 603.021 338.137 605.037C338.137 607.021 338.441 608.765 339.049 610.269C339.689 611.773 340.569 612.941 341.689 613.773C342.841 614.605 344.169 615.021 345.673 615.021ZM364.654 618.045V591.981H368.254L368.686 595.773H368.782C369.934 594.525 371.182 593.469 372.526 592.605C373.902 591.741 375.358 591.309 376.894 591.309C378.91 591.309 380.478 591.757 381.598 592.653C382.718 593.549 383.55 594.765 384.094 596.301C385.47 594.829 386.846 593.629 388.222 592.701C389.63 591.773 391.134 591.309 392.734 591.309C395.39 591.309 397.358 592.189 398.638 593.949C399.95 595.677 400.606 598.205 400.606 601.533V618.045H396.238V602.109C396.238 599.645 395.838 597.869 395.038 596.781C394.27 595.693 393.054 595.149 391.39 595.149C390.398 595.149 389.358 595.485 388.27 596.157C387.214 596.797 386.062 597.789 384.814 599.133V618.045H380.446V602.109C380.446 599.645 380.046 597.869 379.246 596.781C378.478 595.693 377.262 595.149 375.598 595.149C374.606 595.149 373.566 595.485 372.478 596.157C371.39 596.797 370.254 597.789 369.07 599.133V618.045H364.654ZM415.092 618.669C413.652 618.669 412.356 618.381 411.204 617.805C410.052 617.229 409.14 616.397 408.468 615.309C407.828 614.189 407.508 612.845 407.508 611.277C407.508 608.429 408.772 606.253 411.3 604.749C413.86 603.213 417.924 602.141 423.492 601.533C423.492 600.413 423.332 599.357 423.012 598.365C422.724 597.341 422.196 596.525 421.428 595.917C420.66 595.277 419.556 594.957 418.116 594.957C416.612 594.957 415.188 595.261 413.844 595.869C412.532 596.445 411.348 597.069 410.292 597.741L408.612 594.717C409.412 594.205 410.34 593.693 411.396 593.181C412.452 592.637 413.604 592.189 414.852 591.837C416.1 591.485 417.428 591.309 418.836 591.309C420.948 591.309 422.66 591.757 423.972 592.653C425.316 593.549 426.292 594.797 426.9 596.397C427.54 597.965 427.86 599.837 427.86 602.013V618.045H424.26L423.876 614.925H423.732C422.516 615.949 421.172 616.829 419.7 617.565C418.26 618.301 416.724 618.669 415.092 618.669ZM416.34 615.117C417.588 615.117 418.772 614.829 419.892 614.253C421.044 613.677 422.244 612.829 423.492 611.709V604.461C420.58 604.781 418.26 605.245 416.532 605.853C414.804 606.429 413.572 607.149 412.836 608.013C412.1 608.845 411.732 609.837 411.732 610.989C411.732 612.493 412.18 613.565 413.076 614.205C413.972 614.813 415.06 615.117 416.34 615.117ZM436.138 618.045V591.981H439.738L440.17 595.773H440.266C441.514 594.525 442.826 593.469 444.202 592.605C445.61 591.741 447.21 591.309 449.002 591.309C451.754 591.309 453.77 592.189 455.05 593.949C456.33 595.677 456.97 598.205 456.97 601.533V618.045H452.602V602.109C452.602 599.645 452.202 597.869 451.402 596.781C450.634 595.693 449.386 595.149 447.658 595.149C446.314 595.149 445.114 595.485 444.058 596.157C443.002 596.829 441.834 597.821 440.554 599.133V618.045H436.138Z" fill="#3CD6A3" />
             </svg>
             <div className="flex flex-col self-end  -translate-y-[60px] ml-[calc(33.3333vh-20px)]">
+
               <div className="flex flex-row mb-[2rem] justify-between ">
                 <p className="text-[3rem] leading-none">
                   King
@@ -199,6 +203,7 @@ export default function Home() {
                   <path d="M90.2482 22.4492H0.858276" stroke="black" strokeWidth="3" />
                 </svg>
               </div>
+
               <div className="w-[460px] select-none h-[240px] relative grid grid-rows-4 grid-cols-4 p-[2rem]">
                 <svg className="left-0 absolute top-0" width="83" height="244" viewBox="0 0 83 244" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M82.6635 11.043H11.0345V233.119H82.6635V243.375H0.883179V0.787109H82.6635V11.043Z" fill="#E6E6E6" />
@@ -251,10 +256,6 @@ export default function Home() {
                 Semantic Vector
               </p>
             </div>
-            {/* <p className="mr-[28px] font-thin text-[2rem] self-end"> */}
-            {/*   将语义数学化， */}
-            {/*   然后交给机器。 */}
-            {/* </p> */}
           </div>
 
           <div className="flex flex-row w-full justify-between relative ">
@@ -309,7 +310,6 @@ export default function Home() {
                 适用节点:
               </p>
               <p className={`${styles.vecContent} font-thin text-[2rem] gap-2 flex justify-start items-start flex-wrap`}>
-
                 {
                   (imgData[curImgIndex] as unknown as any)?.describe?.festivalNode.map((e: string, index: number) => {
                     return <span className="bg-amber-100 rounded-[2rem] px-4 py-2 text-[1.8rem] "
@@ -325,7 +325,6 @@ export default function Home() {
                 颜色:
               </p>
               <p className={`${styles.vecContent} font-thin text-[2rem] flex gap-2 justify-start items-start flex-wrap `}>
-
                 {
                   (imgData[curImgIndex] as unknown as any)?.describe?.colorSorting.map((e: string, index: number) => {
                     return <span className="rounded-[2rem] px-4 py-2 text-[1.8rem] "
@@ -342,7 +341,6 @@ export default function Home() {
           </div>
         </div>
         <div className="h-[20rem] w-screen bg-white">
-
           <div className={`${styles.vLine} absolute w-screen h-full`}>
             <div id="vLine1" className={`${styles.vLine1} w-[1px] h-full bg-black`}></div>
             <div id="vLine2" className={`${styles.vLine2} w-[1px] h-full bg-black`}></div>
@@ -361,6 +359,7 @@ export default function Home() {
             <div id="hLine1" className={` w-screen h-[1px] bg-black translate-y-[calc(8rem-3px)]`}></div>
             <div id="hLine2" className={` w-screen h-[1px] bg-black translate-y-[calc(8rem-3px+818px)]`}></div>
           </div>
+
           <div className={`${styles.vLine} absolute w-screen h-full`}>
             <div id="vLine1" className={`${styles.vLine1} w-[1px] h-full bg-black`}></div>
             <div id="vLine2" className={`${styles.vLine2} w-[1px] h-full bg-black`}></div>
@@ -370,6 +369,7 @@ export default function Home() {
             <div id="vLine6" className={`${styles.vLine6} w-[1px] h-full bg-black`}></div>
             <div id="vLine7" className={`${styles.vLine7} w-[1px] h-full bg-black`}></div>
           </div>
+
           <div className="flex flex-row w-full justify-between">
             <div className="px-[28px] ">
               <p className="row-[2_/_3] col-[2_/_3] text-[5rem] leading-none font-thin">
@@ -381,8 +381,6 @@ export default function Home() {
 
           <div className="mt-[10rem] select-none ">
             <img src="/vec/flow.svg" className="select-none z-100 relative w-[100vh] ml-[calc(28px+33.3333vh)]" />
-          </div>
-          <div>
           </div>
         </div>
       </div>

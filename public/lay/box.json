@@ -1,0 +1,22 @@
+[
+  {
+    "name": "内容区域",
+    "nameen": "Content",
+    "desc": "显示元素的实际内容"
+  },
+  {
+    "name": "内边距",
+    "nameen": "Padding",
+    "desc": "内容与边框之间的透明缓冲区域"
+  },
+  {
+    "name": "边框",
+    "nameen": "Border",
+    "desc": "包裹内边距和内容的可见边界"
+  },
+  {
+    "name": "外边距",
+    "nameen": "Margin",
+    "desc": "盒子与其他元素之间的透明隔离区"
+  }
+]

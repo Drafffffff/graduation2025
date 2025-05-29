@@ -1,6 +1,6 @@
 import type { Route } from "./+types/home";
 import styles from "../style/lay.module.css";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -20,6 +20,9 @@ export function meta({ }: Route.MetaArgs) {
 
 export default function Home() {
   const gsapContainer = useRef<HTMLDivElement>(null)
+  const [boxInfo, setBoxInfo] = useState<any>({})
+  const [curBoxIndex, setcurBoxIndex] = useState(0)
+  const [curLayIndex, setcurLayIndex] = useState(0)
   useGSAP((context, contextSafe) => {
     const ytrans = 28 + (window.innerHeight - 28) * 6 / 17.6
     const xtrans = (28 + (window.innerWidth - 28 - 28) * 5 / 23)
@@ -31,7 +34,6 @@ export default function Home() {
 
 
     gsap.fromTo('.svgpath', { duration: 1, drawSVG: 0, ease: "power4.inOut" }, { duration: 1, drawSVG: "100%", stagger: { amount: 0.05, from: "random" }, delay: 0.5 })
-
     gsap.from("#hLine1", { width: 0, duration: 1, ease: "power4.inOut", delay: 0.1 })
     gsap.from("#hLine2", { width: 0, duration: 1, ease: "power4.inOut", delay: 0.2 })
     gsap.from("#hLine3", { width: 0, duration: 1, ease: "power4.inOut", delay: 0.4 })
@@ -56,6 +58,20 @@ export default function Home() {
       delay: 0.5
     });
   }, { scope: gsapContainer })
+
+  useEffect(() => {
+    async function getData() {
+      fetch('/lay/box.json')
+        .then(response => response.json())
+        .then(data => {
+          setBoxInfo(data)
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        });
+    }
+    getData()
+  }, [0])
 
   return <div id="smooth-wrapper" className={styles.main} ref={gsapContainer}>
     <div id="smooth-content" >
@@ -116,13 +132,15 @@ export default function Home() {
 
           <div id="descCard" className={`${styles.desc} row-[4_/_5] col-[4_/_5]  text-white font-medium text-[36px] bg-[#A7724A] flex justify-center flex-col`}>
             <p id="descp1">“</p>
-            <p id="descp2" className="text-center">一步一步地思考问题。</p>
+            <p id="descp2" className="text-center">
+              响应式布局。
+            </p>
             <p id="descp3" className="text-right">”</p>
           </div>
         </div>
       </div>
       <div className="h-[20rem] w-screen bg-white">
-        <div className={`${styles.vLine} absolute w-screen h-full`}>
+        <div className={`${styles.vLine} absolute w-screen h-full pointer-events-none`}>
           <div id="vLine1" className={`${styles.vLine1} w-[1px] h-full bg-black`}></div>
           <div id="vLine2" className={`${styles.vLine2} w-[1px] h-full bg-black`}></div>
           <div id="vLine3" className={`${styles.vLine3} w-[1px] h-full bg-black`}></div>
@@ -132,14 +150,19 @@ export default function Home() {
         <div>
         </div>
       </div>
-      <div className="h-[100vh] w-screen bg-white">
-        <div className={`${styles.vLine} absolute w-screen h-full`}>
+      <div className=" w-screen bg-white">
+        <div className={`${styles.vLine} absolute w-screen h-full pointer-events-none`}>
           <div id="vLine1" className={`${styles.vLine1} w-[1px] h-full bg-black`}></div>
           <div id="vLine2" className={`${styles.vLine2} w-[1px] h-full bg-black`}></div>
           <div id="vLine3" className={`${styles.vLine3} w-[1px] h-full bg-black`}></div>
           <div id="vLine4" className={`${styles.vLine4} w-[1px] h-full bg-black`}></div>
           <div id="vLine5" className={`${styles.vLine5} w-[1px] h-full bg-black`}></div>
         </div>
+        <div className={`${styles.hLine} absolute w-screen h-full`}>
+          <div id="hLine1" className={` w-screen h-[1px] bg-black translate-y-[calc(8rem-3px)]`}></div>
+          <div id="hLine2" className={` w-screen h-[1px] bg-black translate-y-[calc(8rem-3px+818px)]`}></div>
+        </div>
+
         <div className="flex flex-row w-full justify-between">
           <div className="px-[28px] ">
             <p className="row-[2_/_3] col-[2_/_3] text-[5rem] leading-none font-thin">
@@ -148,21 +171,157 @@ export default function Home() {
             <p className=" text-[2.8rem] leading-none text-gray-400 font-normal ">Box Model</p>
           </div>
         </div>
+
+        <div className="flex flex-row w-full relative z-100 my-[15rem]">
+          <div className="showBox w-[calc(28px+(100%-28px)*12/23)]" >
+            <div
+              className="marginbox m-auto w-[763px] h-[530px] flex justify-center items-center"
+              onMouseMove={(e) => {
+                e.stopPropagation();
+                const rect = e.currentTarget.getBoundingClientRect();
+                if (
+                  e.clientX >= rect.left &&
+                  e.clientX <= rect.right &&
+                  e.clientY >= rect.top &&
+                  e.clientY <= rect.bottom
+                ) {
+                  setcurBoxIndex(3);
+                }
+              }}
+              style={{
+                backgroundColor: curBoxIndex === 3 ? "red" : "#7FBB9D",
+              }}
+            >
+              <div
+                className="borderbox bg-[#D88029] w-[614px] h-[408px] flex justify-center items-center"
+                onMouseMove={(e) => {
+                  e.stopPropagation();
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  if (
+                    e.clientX >= rect.left &&
+                    e.clientX <= rect.right &&
+                    e.clientY >= rect.top &&
+                    e.clientY <= rect.bottom
+                  ) {
+                    setcurBoxIndex(2);
+                  }
+                }}
+                style={{
+                  backgroundColor: curBoxIndex === 2 ? "red" : "#D88029",
+                }}
+              >
+                <div
+                  className="paddingbox  w-[570px] h-[365px] flex justify-center items-center"
+                  onMouseMove={(e) => {
+                    e.stopPropagation();
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    if (
+                      e.clientX >= rect.left &&
+                      e.clientX <= rect.right &&
+                      e.clientY >= rect.top &&
+                      e.clientY <= rect.bottom
+                    ) {
+                      setcurBoxIndex(1);
+                    }
+                  }}
+
+                  style={{
+                    backgroundColor: curBoxIndex === 1 ? "red" : "#ffffff",
+                  }}
+                >
+                  <div
+                    className="content  w-[350px] h-[224px] flex justify-center items-center"
+                    onMouseMove={(e) => {
+                      e.stopPropagation();
+                      const rect = e.currentTarget.getBoundingClientRect();
+                      if (
+                        e.clientX >= rect.left &&
+                        e.clientX <= rect.right &&
+                        e.clientY >= rect.top &&
+                        e.clientY <= rect.bottom
+                      ) {
+                        setcurBoxIndex(0);
+                      }
+                    }}
+                    style={{
+                      backgroundColor: curBoxIndex === 0 ? "red" : "#2E58A3",
+                    }}
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="boxintro flex justify-center flex-col select-none">
+            <div className="name font-light text-[40px]">
+              {boxInfo[curBoxIndex]?.name}
+            </div>
+            <div className="nameen text-[32px] font-thin">
+              {boxInfo[curBoxIndex]?.nameen}
+            </div>
+            <div className="desc text-[40px] mt-[8rem] font-thin">
+              {boxInfo[curBoxIndex]?.desc}
+            </div>
+          </div>
+        </div>
+
+
       </div>
+      <div className="h-[20rem] w-screen bg-white ">
+        <div className={`${styles.vLine} absolute w-screen h-[20rem]`}>
+          <div id="vLine1" className={`${styles.vLine1} w-[1px] h-[20rem] bg-black`}></div>
+          <div id="vLine2" className={`${styles.vLine2} w-[1px] h-[20rem] bg-black`}></div>
+          <div id="vLine3" className={`${styles.vLine3} w-[1px] h-[20rem] bg-black`}></div>
+          <div id="vLine4" className={`${styles.vLine4} w-[1px] h-[20rem] bg-black`}></div>
+          <div id="vLine5" className={`${styles.vLine5} w-[1px] h-[20rem] bg-black`}></div>
+        </div>
+        <div>
+        </div>
+      </div>
+
       <div className="h-[100vh] w-screen bg-white">
-        <div className={`${styles.vLine} absolute w-screen h-full`}>
+
+        <div className={`${styles.vLine} absolute w-screen h-full pointer-events-none `}>
           <div id="vLine1" className={`${styles.vLine1} w-[1px] h-full bg-black`}></div>
           <div id="vLine2" className={`${styles.vLine2} w-[1px] h-full bg-black`}></div>
           <div id="vLine3" className={`${styles.vLine3} w-[1px] h-full bg-black`}></div>
           <div id="vLine4" className={`${styles.vLine4} w-[1px] h-full bg-black`}></div>
           <div id="vLine5" className={`${styles.vLine5} w-[1px] h-full bg-black`}></div>
         </div>
-        <div className="flex flex-row w-full justify-between">
+
+        <div className={`${styles.hLine} absolute w-screen h-full`}>
+          <div id="hLine1" className={` w-screen h-[1px] bg-black translate-y-[calc(8rem-3px)]`}></div>
+          <div id="hLine2" className={` w-screen h-[1px] bg-black translate-y-[calc(8rem-3px+818px)]`}></div>
+        </div>
+
+        <div className="flex flex-row w-full justify-between select-none ">
           <div className="px-[28px] ">
             <p className="row-[2_/_3] col-[2_/_3] text-[5rem] leading-none font-thin">
               响应式布局
             </p>
             <p className=" text-[2.8rem] leading-none text-gray-400 font-normal ">Flex Layout</p>
+          </div>
+        </div>
+        <div className="flex-row flex justify-between mt-[10rem]" >
+          <div className="buttons w-[calc(16px+(100%-28px)*12/23)] pl-[calc(20px+(100%-28px)*5/23)]">
+            <div className=" grid grid-cols-3 gap-[4rem]   mt-[10rem]">
+              {Array.from({ length: 6 }).map((_, index) => {
+                return <div className="group cursor-pointer select-none p-[1rem] bg-gray-200 aspect-square flex justify-center items-center"
+                  key={index}
+                  onClick={() => { setcurLayIndex(index) }}
+                >
+                  <img src={`/lay/icon${index + 1}.svg`} width={"80"}
+                    className="group-hover:scale-110 transition-transform"
+                    style={{
+                      opacity: curLayIndex === index ? `1` : "0.3"
+                    }}
+                  />
+                </div>
+              })}
+            </div>
+          </div>
+          <div className="iimgs w-[calc(16px+(100%-28px)*7/23)] mr-[28px] z-100">
+            <img src={`/lay/lay${curLayIndex + 1}.png`} className="h-full  " />
           </div>
         </div>
       </div>

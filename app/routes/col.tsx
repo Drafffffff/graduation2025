@@ -404,7 +404,7 @@ export default function Home() {
             >
               <p id="descp1">“</p>
               <p id="descp2" className="text-center">
-                一步一步地思考问题。
+                颜色提取与色板生成。
               </p>
               <p id="descp3" className="text-right">
                 ”
