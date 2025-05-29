@@ -39,15 +39,21 @@ export default function Back() {
   }, { scope: gsapContainer })
 
   const nav = useNavigate()
-  return <div ref={gsapContainer}>
-    <div id="backbg" className="w-screen h-screen bg-[#202020] fixed pointer-events-none "
+  return <div ref={gsapContainer} style={{
+    zIndex: 10000
+  }}>
+    <div id="backbg"
+      className="w-screen h-screen bg-[#202020] fixed pointer-events-none "
       style={{
-        opacity: 0
+        opacity: 0,
+        zIndex: 100000
       }}
     >
     </div>
-
     <div id="backButton" className="select-none w-[5rem] h-[5rem] bg-white border fixed top-[50%] flex justify-center items-center cursor-pointer"
+      style={{
+        zIndex: 10000,
+      }}
       ref={buttonRef}
     >
       <img src="back.svg" />

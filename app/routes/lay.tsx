@@ -6,13 +6,10 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { SplitText } from "gsap/SplitText";
-
 import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 import Back from "~/components/back";
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText, DrawSVGPlugin);
-
 export function meta({ }: Route.MetaArgs) {
-
   return [
     { title: "New React Router App" },
     { name: "description", content: "Welcome to React Router!" },

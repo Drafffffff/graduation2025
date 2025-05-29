@@ -389,7 +389,6 @@ export default function Home() {
     layEle.addEventListener('click', onLayClick);
     layEle.addEventListener('mouseenter', onLayHover);
     layEle.addEventListener('mouseleave', onLayLeave);
-
     return () => {
       cotEle.removeEventListener('click', onCotClick);
       cotEle.removeEventListener('mouseenter', onCotHover);
@@ -421,16 +420,12 @@ export default function Home() {
         id="swiper"
         spaceBetween={50}
         slidesPerView={6}
-        // onSlideChange={() => console.log('slide change')}
         loop={true}
-        // autoHeight={true}
         autoplay={{
           delay: 0,
-          // disableOnInteraction: false,
         }}
         speed={2000}
         freeMode={true}
-        // onSwiper={(swiper) => console.log(swiper)}
         modules={[Autoplay]}
         className="h-[50%] w-full"
       >
@@ -494,6 +489,7 @@ export default function Home() {
           <rect x="0.907715" y="0.449219" width="52.4485" height="52.4485" className="fill-[#AD5555]  group-hover:fill-none group-hover:stroke-white" />
           <circle cx="27.132" cy="26.6735" r="26.2243" className="fill-[#FF7070]  group-hover:fill-none group-hover:stroke-white" />
         </svg>
+
         <svg id="colSvg2" className="absolute translate-x-[306px]  " width="54" height="53" viewBox="0 0 54 53" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect x="0.907715" y="0.449219" width="52.4485" height="52.4485" className="fill-[#AD5555]  group-hover:fill-none group-hover:stroke-white" />
           <circle cx="27.132" cy="26.6735" r="26.2243" className="fill-[#FF7070]  group-hover:fill-none group-hover:stroke-white" />
@@ -520,7 +516,7 @@ export default function Home() {
         <p id="subTitle" className={`${styles.subtitle} bg-[#E7FE79] inline-block`}>Top Ecommerce Designer in the Age of AI</p>
       </div>
       <div id="desc" className="select-none row-[2_/_3] col-[4_/_5] text-[24px] font-thin w-[35%] text-white"><p>Create pictures that sell your products with Pic Copilot Al.Proven to boost click-through rates by 54.7%!</p></div>
-      <div id="try" className="select-none row-[4_/_5] col-[4_/_5] text-[48px] font-normal underline  self-end justify-self-end text-white "><p>立刻体验[→]</p></div>
+      <div id="try" className={`select-none row-[4_/_5] col-[4_/_5] text-[48px] font-normal underline  self-end justify-self-end text-white  ${styles.underlineHover} z-100  `} onClick={() => { nav("/gen") }}><p>立刻体验[→]</p></div>
     </div>
   </div >;
 }

@@ -11,11 +11,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { SplitText } from "gsap/SplitText";
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Pagination, Navigation } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText);
 export function meta({ }: Route.MetaArgs) {
@@ -494,6 +493,7 @@ export default function Home() {
               Color Extraction
             </p>
           </div>
+
           <Swiper
             slidesPerView={1.8}
             centeredSlides={true}
@@ -514,6 +514,7 @@ export default function Home() {
               );
             })}
           </Swiper>
+
           <div
             id="mainColor"
             className=" colorPaletter flex px-[28px] h-[10rem] select-none"
@@ -577,7 +578,9 @@ export default function Home() {
               {Array.from({ length: 8 }).map((_, index) => {
                 const color = `${SecColorPalette[index] ? `${SecColorPalette[index]}` : "#000"
                   }`;
+
                 let fontColor = "#000";
+
                 if (chroma(color).hsl()[2] > 0.5) {
                   fontColor = "#000";
                 } else {
@@ -585,6 +588,7 @@ export default function Home() {
                 }
 
                 return (
+
                   <div
                     id={`maincolor-${index}`}
                     key={index}
@@ -594,6 +598,7 @@ export default function Home() {
                       backgroundColor: color,
                     }}
                   >
+
                     <p
                       className=""
                       style={

@@ -86,3 +86,39 @@
   font-weight: 100;
   line-height: 1;
 }
+
+.underline-hover-center::after {
+  left: 50%;
+  /* 从中心开始 */
+  transform: translateX(-50%);
+}
+
+.underline-hover-center:hover::after {
+  width: 100%;
+  left: 0;
+  /* 覆盖整个宽度 */
+  transform: none;
+}
+
+.underlineHover {
+  display: inline-block;
+  position: relative;
+  padding-bottom: 4px;
+  cursor: pointer;
+}
+
+.underlineHover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 4px;
+  transform: translateY(-10px);
+  background-color: white;
+  transition: width 0.3s ease-out;
+}
+
+.underlineHover:hover::after {
+  width: 100%;
+}

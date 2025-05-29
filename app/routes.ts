@@ -7,5 +7,6 @@ export default [
   route("col", "routes/col.tsx"),
   route("vec", "routes/vec.tsx"),
   route("lay", "routes/lay.tsx"),
+  route("gen", "routes/gen.tsx"),
 
 ] satisfies RouteConfig;
