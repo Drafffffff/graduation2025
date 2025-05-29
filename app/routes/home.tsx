@@ -413,8 +413,7 @@ export default function Home() {
     return clone;
   }
 
-  return <div className="overflow-hidden bg-[#880000]" ref={gsapContainer}>
-
+  return <div className="overflow-hidden bg-[#202020]" ref={gsapContainer}>
     <div className="absolute w-screen h-screen flex justify-center items-center z-0 opacity-60">
       <Swiper
         id="swiper"
