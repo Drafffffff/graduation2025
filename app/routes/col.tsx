@@ -1,5 +1,6 @@
 import type { Route } from "./+types/home";
 import ColorThief from "color-thief-ts";
+import Back from "~/components/back";
 import chroma from "chroma-js";
 import styles from "../style/col.module.css";
 import { Sketch, Colorful, Wheel, Block, Chrome } from "@uiw/react-color";
@@ -1077,6 +1078,9 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      <Back />
     </div>
+
   );
 }

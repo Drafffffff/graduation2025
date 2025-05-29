@@ -1,5 +1,6 @@
 
 import type { Route } from "./+types/home";
+import Back from "~/components/back";
 import styles from "../style/vec.module.css";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
@@ -385,5 +386,7 @@ export default function Home() {
         </div>
       </div>
     </div>
+
+    <Back />
   </div>;
 }

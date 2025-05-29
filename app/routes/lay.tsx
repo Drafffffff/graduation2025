@@ -8,6 +8,7 @@ import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { SplitText } from "gsap/SplitText";
 
 import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
+import Back from "~/components/back";
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother, SplitText, DrawSVGPlugin);
 
 export function meta({ }: Route.MetaArgs) {
@@ -275,8 +276,6 @@ export default function Home() {
           <div id="vLine4" className={`${styles.vLine4} w-[1px] h-[20rem] bg-black`}></div>
           <div id="vLine5" className={`${styles.vLine5} w-[1px] h-[20rem] bg-black`}></div>
         </div>
-        <div>
-        </div>
       </div>
 
       <div className="h-[100vh] w-screen bg-white">
@@ -326,5 +325,7 @@ export default function Home() {
         </div>
       </div>
     </div>
+    <Back />
   </div >;
+
 }

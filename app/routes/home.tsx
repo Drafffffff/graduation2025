@@ -10,7 +10,7 @@ import { useRef, useState } from "react";
 import { Flip } from "gsap/Flip";
 import { SplitText } from "gsap/SplitText";
 import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
-gsap.registerPlugin(Flip, DrawSVGPlugin, SplitText);
+gsap.registerPlugin(useGSAP, Flip, DrawSVGPlugin, SplitText);
 
 export function meta({ }: Route.MetaArgs) {
   return [

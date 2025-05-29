@@ -2,6 +2,7 @@ import type { Route } from "./+types/home";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Back from "~/components/back";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { SplitText } from "gsap/SplitText";
 import styles from "../style/cot.module.css";
@@ -385,6 +386,6 @@ export default function Home() {
 
 
     </div >
-    {/* <Back /> */}
+    <Back />
   </>;
 }
