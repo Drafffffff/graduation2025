@@ -48,6 +48,7 @@ export default function Home() {
 
     //渐出
     gsap.from("#swiper", { opacity: 0, duration: 1, ease: "power4.inOut", delay: 0.5 })
+    gsap.from("#website", { opacity: 0, duration: 1, ease: "power4.inOut", delay: 0.5 })
     gsap.from("#logo", { opacity: 0, duration: 1, ease: "power4.inOut", delay: 0.5 })
 
     const split = SplitText.create("#title", { type: " chars" });
@@ -81,14 +82,12 @@ export default function Home() {
       delay: 0.5
     });
 
-
     gsap.from(SplitText.create("#try", { type: "words ,chars" }).chars, {
       duration: 0.5,
       y: 100,
       autoAlpha: 0, // fade in from opacity: 0 and visibility: hidden
       stagger: 0.05, // 0.05 seconds between each
       delay: 0.5
-
     });
 
     gsap.from("#cot", { x: -400, duration: 1, ease: "power4.inOut", delay: 0.5 })
@@ -101,7 +100,6 @@ export default function Home() {
     gsap.from("#hLine3", { width: 0, duration: 1, ease: "power4.inOut", delay: 0.4 })
     gsap.from("#hLine4", { width: 0, duration: 1, ease: "power4.inOut", delay: 0.1 })
 
-
     gsap.from("#vLine1", { height: 0, duration: 1, ease: "power4.inOut", delay: 0.4 })
     gsap.from("#vLine2", { height: 0, duration: 1, ease: "power4.inOut", delay: 0.3 })
     gsap.from("#vLine3", { height: 0, duration: 1, ease: "power4.inOut", delay: 0.1 })
@@ -113,10 +111,14 @@ export default function Home() {
       setClickable(false)
       gsap.effects.fade("#col");
       gsap.effects.fade("#lay");
+      gsap.effects.fade("#try");
       gsap.effects.fade("#vec");
       gsap.effects.fade("#swiper", { duration: 0.01 });
       gsap.effects.fade(".cotSVG");
       gsap.effects.fade("#cotp");
+      gsap.effects.fade("#website");
+      gsap.effects.fade(".tips");
+
       const state = Flip.getState(cotEle, { props: "backgroundColor," });
       const placeholder = createPlaceholder(cotEle);
 
@@ -136,7 +138,6 @@ export default function Home() {
       })
       const ytrans = (28 + (window.innerHeight - 28 - 28) * 5 / 12) - window.innerHeight + 160
       const xtrans = (28 + (window.innerWidth - 28 - 28) * 5 / 23)
-      console.log(ytrans);
 
       gsap.to("#cotp2", {
         // fontSize: "10rem",
@@ -168,6 +169,9 @@ export default function Home() {
       if (!clickable) return
       setClickable(false)
       gsap.effects.fade("#cot");
+      gsap.effects.fade(".tips");
+      gsap.effects.fade("#try");
+      gsap.effects.fade("#website");
       gsap.effects.fade("#lay");
       gsap.effects.fade("#vec");
       gsap.effects.fade("#colp");
@@ -240,6 +244,9 @@ export default function Home() {
       layEle.removeEventListener('mouseenter', onLayHover);
       layEle.removeEventListener('mouseleave', onLayLeave);
       gsap.effects.fade("#cot");
+      gsap.effects.fade(".tips");
+      gsap.effects.fade("#try");
+      gsap.effects.fade("#website");
       gsap.effects.fade("#col");
       gsap.effects.fade("#vec");
       gsap.effects.fade("#swiper", { duration: 0.01 });
@@ -319,8 +326,12 @@ export default function Home() {
     const onVecClick = contextSafe(() => {
       if (!clickable) return
       setClickable(false)
+
+      gsap.effects.fade(".tips");
       gsap.effects.fade("#col");
+      gsap.effects.fade("#try");
       gsap.effects.fade("#lay");
+      gsap.effects.fade("#website");
       gsap.effects.fade("#cot");
       gsap.effects.fade("#vecp");
       gsap.effects.fade("#swiper", { duration: 0.01 });
@@ -331,9 +342,6 @@ export default function Home() {
         display: "none"
       })
 
-      // gsap.set("#vecp", {
-      //   display: "none"
-      // })
 
       gsap.set(vecEle, {
         width: "100vw",
@@ -461,9 +469,15 @@ export default function Home() {
         <img src="/home/logo.png" className="invert-100" />
       </div>
 
+      <div id="website" className="row-[2_/_3] col-[2_/_3] self-end ">
+        <p className="text-white font-thin text-[2rem] select-none leading-none ">https://www.PicCopilot.com</p>
+      </div>
+
       <div
         ref={cotGSAPRef}
         id="cot" className={`${styles.cot} group  bg-[#6CF1AC] flex hover:bg-[#000]  flex-col justify-between cursor-pointer select-none w-[360px] h-[230px]`} >
+        <p className="tips absolute text-white font-thin translate-y-[230px]">点击上方了解更多</p>
+
         <p id="cotp" className="font-thin text-8 self-start group-hover:invert duration-50 ease-in-out">Chain of Thought</p>
         <p id="cotp2" className="font-thin text-8xl group-hover:invert duration-50 ease-in-out  ">思维链</p>
         <svg width="278" height="145" viewBox="0 0 278 145" fill="none" xmlns="http://www.w3.org/2000/svg" className="cotSVG absolute translate-x-6 translate-y-16 group-hover:invert duration-50 ease-in-out ">
@@ -472,6 +486,7 @@ export default function Home() {
       </div>
 
       <div id="vec" ref={vecGSAPRef} className={`${styles.vec} group hover:bg-[#000] bg-[#80C4F1]  flex flex-col justify-between  cursor-pointer select-none w-[360px] h-[230px]`}>
+        <p className="tips absolute text-white font-thin translate-y-[230px]">点击上方了解更多</p>
         <p id="vecp" className=" font-thin text-8 self-start group-hover:invert duration-50 ease-in-out ">Semantic Embedding</p>
         <p id="vecp2" className=" font-thin text-7xl group-hover:invert duration-50 ease-in-out">语义向量</p>
         <svg width="76" id="vecvec" className="absolute translate-x-[274px] group-hover:invert duration-50 ease-in-out " height="76" viewBox="0 0 76 76" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -482,6 +497,7 @@ export default function Home() {
       </div>
 
       <div id="col" ref={colGSAPRef} className={`${styles.col} bg-[#F48DD2] group hover:bg-[#000] flex flex-col justify-between cursor-pointer select-none w-[360px] h-[230px]`}>
+        <p className="tips absolute text-white font-thin translate-y-[230px]">点击上方了解更多</p>
         <p id="colp" className=" font-thin text-8 self-start group-hover:invert duration-50 ease-in-out">Color  Algorithm</p>
         <p id="colp2" className=" font-thin text-7xl group-hover:invert duration-50 ease-in-out">配色算法</p>
         <svg id="colSvg1" className="absolute translate-x-[254px]  translate-y-[53px]" width="54" height="53" viewBox="0 0 54 53" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -496,6 +512,7 @@ export default function Home() {
       </div>
 
       <div id="lay" ref={layGSAPRef} className={`${styles.lay} group bg-[#FFA770] hover:bg-[#000] col-span-2 flex flex-col justify-between cursor-pointer select-none w-[360px] h-[230px]`}>
+        <p className="tips absolute text-white font-thin translate-y-[230px]">点击上方了解更多</p>
         <p id="layp1" className=" font-thin text-8 self-start border-[1px] group-hover:invert duration-50 ease-in-out">Flex Layout</p>
         <p id="layp2" className=" font-thin text-7xl self-start border-[1px] group-hover:invert duration-50 ease-in-out ">版式文法</p>
         <svg id="laysvg1" width="136" height="97" className="absolute translate-x-[225px] group-hover:invert duration-50  ease-in-out" viewBox="0 0 136 97" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -1,25 +1,46 @@
 import Back from "~/components/back";
 import styles from "../style/gen.module.css"
+import { io, Socket } from 'socket.io-client';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useGSAP } from "@gsap/react";
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap"
 import { useNavigate } from "react-router";
+import { useCrossTabCallback } from "~/components/useCrossTabCommunication";
 
 gsap.registerPlugin(useGSAP);
+
+const MESSAGE_TYPES = {
+  GREETING: 'greeting',
+  DATA_UPDATE: 'data-update',
+  NOTIFICATION: 'notification',
+  CUSTOM_ACTION: 'custom-action'
+} as const;
 export default function Gen() {
   const gsapContainer = useRef<HTMLDivElement>(null)
   const [inputMessage, setInputMessage] = useState<string>("")
+  const [messages, setMessages] = useState<string[]>([]);
   const [sendState, setSendState] = useState(0)
-
   const buttonRef = useRef<HTMLImageElement>(null)
+  const { sendMessage, subscribe } = useCrossTabCallback();
+  const addMessage = (msg: string) => {
+    setMessages(prev => [
+      `[${new Date().toLocaleTimeString()}] ${msg}`,
+      ...prev.slice(0, 9) // 只保留最新的10条
+    ]);
+  };
+
+  const sendGreeting = () => {
+    const greeting = '你好, 其他标签页!';
+    sendMessage(MESSAGE_TYPES.GREETING, greeting);
+    addMessage(`发送问候: ${greeting}`);
+  };
   const nav = useNavigate()
   useGSAP((context, contextSafe) => {
     const butEl = buttonRef.current
     if (!butEl || !contextSafe) return
-
     gsap.from(".sper", { opacity: 0, duration: 1, ease: "power4.inOut", stagger: 0.5, delay: 0.5 })
     gsap.from("#input", { opacity: 0, duration: 1, ease: "power4.inOut", delay: 0.5 })
 
@@ -67,6 +88,7 @@ export default function Gen() {
         <div className="w-full h-[100px] bg-white flex">
           <input value={inputMessage} className="w-full h-full p-[1rem] text-[1.3rem]" placeholder="请输入你的海报需求" />
           {!sendState ? <img onClick={() => {
+            sendGreeting()
             setSendState(1);
             setTimeout(() => { nav("/") }, 2000)
           }}
