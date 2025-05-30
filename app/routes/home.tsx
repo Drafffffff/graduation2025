@@ -510,7 +510,7 @@ export default function Home() {
         </svg>
       </div>
       <div className="row-[3_/_4] col-[4_/_5]">
-        <p id="title" className={`${styles.title} bg-[#E7FE79] inline-block`}>AI时代的顶级电商设计师</p>
+        <p id="title" className={`${styles.title} bg-[#E7FE79] inline-block`}>AI时代的海报设计师</p>
         <br />
         <p id="subTitle" className={`${styles.subtitle} bg-[#E7FE79] inline-block`}>Top Ecommerce Designer in the Age of AI</p>
       </div>
