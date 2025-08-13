@@ -90,6 +90,14 @@ export default function Home() {
       delay: 0.5
     });
 
+    gsap.from(SplitText.create("#overview", { type: "words ,chars" }).chars, {
+      duration: 0.5,
+      y: 100,
+      autoAlpha: 0, // fade in from opacity: 0 and visibility: hidden
+      stagger: 0.05, // 0.05 seconds between each
+      delay: 0.7
+    });
+
     gsap.from("#cot", { x: -400, duration: 1, ease: "power4.inOut", delay: 0.5 })
     gsap.from("#vec", { y: -400, duration: 1, ease: "power4.inOut", delay: 0.5 })
     gsap.from("#col", { y: 400, duration: 1, ease: "power4.inOut", delay: 0.5 })
@@ -533,6 +541,9 @@ export default function Home() {
       </div>
 
       <div id="desc" className="select-none row-[2_/_3] col-[4_/_5] text-[24px] font-thin w-[35%] text-white"><p>Create pictures that sell your products with Pic Copilot Al.Proven to boost click-through rates by 54.7%!</p></div>
+
+      <div id="overview" className={`select-none row-[3_/_4] col-[4_/_5] text-[24px] font-normal underline self-center justify-self-start text-white ${styles.underlineHover} z-100`} onClick={() => { nav("/overview") }}><p>功能总览[→]</p>
+      </div>
 
       <div id="try" className={`select-none row-[4_/_5] col-[4_/_5] text-[48px] font-normal underline  self-end justify-self-end text-white  ${styles.underlineHover} z-100`} onClick={() => { nav("/gen") }}><p>立刻体验[→]</p>
       </div>
